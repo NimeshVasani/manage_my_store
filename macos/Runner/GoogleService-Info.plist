@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyCI4xIxT0F3yuAKiZ8fsWiG_9KEuRWgQZ4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>627268715713</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.manageMyStore.RunnerTests</string>
+	<key>PROJECT_ID</key>
+	<string>new-flutter-projects</string>
+	<key>STORAGE_BUCKET</key>
+	<string>new-flutter-projects.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:627268715713:ios:4c0c989472510ca094c040</string>
+	<key>DATABASE_URL</key>
+	<string>https://new-flutter-projects-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>
