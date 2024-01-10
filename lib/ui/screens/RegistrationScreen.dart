@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:manage_my_store/model/User.dart';
+import 'package:manage_my_store/utils/Resource.dart';
+import 'package:manage_my_store/utils/Resource.dart';
 import 'package:provider/provider.dart';
+import '../../utils/Resource.dart';
 import '../../viewmodels/authentication/authviewmodel.dart';
 import '../widgets/loginscreenwidgets/emailTextField.dart';
 import '../widgets/loginscreenwidgets/passwordTextField.dart';
@@ -13,7 +17,7 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
-  var authViewModel;
+  late AuthViewModel authViewModel;
 
   @override
   void initState() {
@@ -30,7 +34,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       body: Container(
         decoration: const BoxDecoration(
             image: DecorationImage(
-                image: AssetImage('assets/images/login_img_3.png'),fit: BoxFit.cover)),
+                image: AssetImage('assets/images/login_img_3.png'),
+                fit: BoxFit.cover)),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -102,9 +107,24 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 padding:
                     const EdgeInsets.only(bottom: 50, left: 30, right: 30.0),
                 child: ElevatedButton(
-                    onPressed: () {
-                      authViewModel.registerWithEmailAndPassword(
-                          "nims1", "nims1@hmail.com", "123456");
+                    onPressed: () async {
+                      BuildContext currentContext = context;
+                      Resources<FirebaseUser?> firebaseUser =
+                          await authViewModel.registerWithEmailAndPassword(
+                              "nims4", "nims4@gmail.com", "123456");
+                      switch(firebaseUser.data){
+                        case Success :
+                          if (!context.mounted) return;
+                          Navigator.pop(currentContext);
+                        case Error :
+                          SnackBar(content: Text(firebaseUser.message.toString()),);
+                        case Loading :
+                          SnackBar(content: Text('Loading..'),);
+                      }
+
+                      if (firebaseUser.data?.email != null) {
+
+                      }
                     },
                     style: const ButtonStyle(
                       backgroundColor: MaterialStatePropertyAll(Colors.green),

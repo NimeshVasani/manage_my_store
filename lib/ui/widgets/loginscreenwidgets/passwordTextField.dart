@@ -26,7 +26,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
         textAlign: TextAlign.start,
         autocorrect: false,
         maxLines: 1,
-
+        textInputAction: TextInputAction.next,
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.symmetric(horizontal: 20),
           focusedBorder: const OutlineInputBorder(

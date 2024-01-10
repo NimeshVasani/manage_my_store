@@ -10,6 +10,7 @@ Widget emailTextField() {
     child: TextField(
       textAlignVertical: TextAlignVertical.center,
       keyboardType: TextInputType.emailAddress,
+      textInputAction: TextInputAction.next,
       textAlign: TextAlign.start,
       autocorrect: false,
       maxLines: 1,

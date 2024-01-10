@@ -120,7 +120,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   if (!mounted) return;
 
                                   Navigator.of(context).pushReplacement(
-                                      MaterialPageRoute(builder: (context) {
+                                      CupertinoPageRoute(builder: (context) {
                                     return const MainScreen();
                                   }));
                                   break;
