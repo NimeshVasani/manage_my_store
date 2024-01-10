@@ -16,24 +16,21 @@ class _LoginOptionsScreenState extends State<LoginOptionsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Center(
-        child: Stack(children: [
-          Expanded(
-              child: Image.asset(
-            'assets/images/login_img.png',
-            height: double.infinity,
-            fit: BoxFit.fitHeight,
-          )),
-          Column(
+      body: Container(
+        decoration: const BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('assets/images/login_img.png'),fit: BoxFit.cover)),
+        child: Center(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Container(
                 width: double.infinity,
                 alignment: Alignment.center,
                 child: const Text(
-                  "Millions of songs.",
+                  "Shop Easy.",
                   style: TextStyle(
-                      color: Colors.white,
+                      color: Colors.orange,
                       fontSize: 30,
                       fontWeight: FontWeight.bold),
                 ),
@@ -42,9 +39,9 @@ class _LoginOptionsScreenState extends State<LoginOptionsScreen> {
                 width: double.infinity,
                 alignment: Alignment.center,
                 child: const Text(
-                  "Only on Geet.",
+                  "Manage Easy.",
                   style: TextStyle(
-                      color: Colors.green,
+                      color: Colors.red,
                       fontSize: 30,
                       fontWeight: FontWeight.bold),
                 ),
@@ -54,8 +51,7 @@ class _LoginOptionsScreenState extends State<LoginOptionsScreen> {
               ),
               Container(
                 width: double.infinity,
-                padding:
-                    const EdgeInsets.only(bottom: 10, left: 30, right: 30.0),
+                padding: const EdgeInsets.only(bottom: 10, left: 30, right: 30.0),
                 child: ElevatedButton(
                     onPressed: () {
                       Navigator.push(context,
@@ -73,8 +69,7 @@ class _LoginOptionsScreenState extends State<LoginOptionsScreen> {
               ),
               Container(
                 width: double.infinity,
-                padding:
-                    const EdgeInsets.only(bottom: 10, left: 30, right: 30.0),
+                padding: const EdgeInsets.only(bottom: 10, left: 30, right: 30.0),
                 child: ElevatedButton(
                     onPressed: () {},
                     style: const ButtonStyle(
@@ -87,8 +82,7 @@ class _LoginOptionsScreenState extends State<LoginOptionsScreen> {
               ),
               Container(
                 width: double.infinity,
-                padding:
-                    const EdgeInsets.only(bottom: 10, left: 30, right: 30.0),
+                padding: const EdgeInsets.only(bottom: 10, left: 30, right: 30.0),
                 child: ElevatedButton(
                     onPressed: () {},
                     style: const ButtonStyle(
@@ -121,7 +115,7 @@ class _LoginOptionsScreenState extends State<LoginOptionsScreen> {
               )
             ],
           ),
-        ]),
+        ),
       ),
     );
   }

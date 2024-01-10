@@ -1,6 +1,9 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class HomeScreen extends StatefulWidget{
+import '../../viewmodels/authentication/authviewmodel.dart';
+
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
@@ -8,9 +11,28 @@ class HomeScreen extends StatefulWidget{
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  late AuthViewModel authViewModel;
+
+  @override
+  void initState() {
+    super.initState();
+    authViewModel = Provider.of<AuthViewModel>(context, listen: false);
+
+    // Other initialization logic
+  }
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    return Scaffold(
+      body: Center(
+        child: ElevatedButton(
+          onPressed:  () {
+            authViewModel.signOut();
+
+          },
+          child: Text('logout'),
+        ),
+      ),
+    );
   }
 }

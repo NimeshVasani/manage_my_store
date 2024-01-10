@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:provider/provider.dart';
 
 import '../../model/User.dart';
 import '../../utils/Resource.dart';
@@ -17,130 +18,140 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final authViewModel = GetIt.instance.get<AuthViewModel>();
+  var authViewModel;
+
+  @override
+  void initState() {
+    super.initState();
+    authViewModel = Provider.of<AuthViewModel>(context, listen: false);
+
+    // Other initialization logic
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        leading: Padding(
-          padding: const EdgeInsets.only(
-            top: 10,
-            left: 10,
-          ),
-          child: InkWell(
-            splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: const Wrap(
-                crossAxisAlignment: WrapCrossAlignment.center,
-                children: [
-                  Icon(
-                    Icons.arrow_back_ios,
-                    color: Colors.blue,
-                  ),
-                  Text(
-                    " Back",
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontSize: 20,
+      backgroundColor: Colors.black,
+      body: Container(
+        decoration: const BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('assets/images/login_img_2.png'),fit: BoxFit.cover)),
+        child: Center(
+          child:
+            Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                AppBar(
+                  backgroundColor: Colors.black38,
+                  leading: Padding(
+                    padding: const EdgeInsets.only(
+                      top: 10,
+                      left: 10,
+                    ),
+                    child: InkWell(
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Wrap(
+                          crossAxisAlignment: WrapCrossAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.arrow_back_ios,
+                              color: Colors.blue,
+                            ),
+                            Text(
+                              " Back",
+                              style: TextStyle(
+                                color: Colors.blue,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 20,
+                              ),
+                            ),
+                          ]),
                     ),
                   ),
-                ]),
-          ),
-        ),
-        leadingWidth: 100,
-      ),
-      backgroundColor: Colors.black,
-      body: SafeArea(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Container(
-                width: 100,
-                height: 100,
-                alignment: Alignment.center,
-                child: Image.asset('assets/images/music_logo.png'),
-              ),
-              Container(
-                width: double.infinity,
-                alignment: Alignment.center,
-                child: const Text(
-                  "Sounds of Joy,",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold),
+                  leadingWidth: 100,
                 ),
-              ),
-              Container(
-                width: double.infinity,
-                alignment: Alignment.center,
-                child: const Text(
-                  "Everywhere.",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold),
+                const Spacer(),
+
+                Container(
+                  width: double.infinity,
+                  alignment: Alignment.center,
+                  child: const Text(
+                    "We can Manage,",
+                    style: TextStyle(
+                        color: Colors.limeAccent,
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
-              ),
-              const SizedBox(
-                height: 50,
-              ),
-              Column(
-                children: [
-                  emailTextField(),
-                  const PasswordTextField(),
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.only(
-                        bottom: 50, left: 30, right: 30.0),
-                    child: ElevatedButton(
-                        onPressed: () async {
-                          final loginStatus =
-                              await authViewModel.loginWithEmailAndPassword(
-                                  "nims1@hmail.com", "123456");
-                          switch (loginStatus.runtimeType) {
-                            case const (Success<FirebaseUser?>):
-                              {
-                                if (!mounted) return;
+                Container(
+                  width: double.infinity,
+                  alignment: Alignment.center,
+                  child: const Text(
+                    "Together.",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                const SizedBox(
+                  height: 50,
+                ),
+                Column(
+                  children: [
+                    emailTextField(),
+                    const PasswordTextField(),
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.only(
+                          bottom: 50, left: 30, right: 30.0),
+                      child: ElevatedButton(
+                          onPressed: () async {
+                            final loginStatus =
+                                await authViewModel.loginWithEmailAndPassword(
+                                    "nims1@hmail.com", "123456");
+                            switch (loginStatus.runtimeType) {
+                              case const (Success<FirebaseUser?>):
+                                {
+                                  if (!mounted) return;
 
-                                Navigator.push(context,
-                                    CupertinoPageRoute(builder: (context) {
-                                  return const MainScreen();
-                                }));
-                                break;
-                              }
+                                  Navigator.of(context).pushReplacement(
+                                      MaterialPageRoute(builder: (context) {
+                                    return const MainScreen();
+                                  }));
+                                  break;
+                                }
 
-                            default:
-                              {
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(const SnackBar(
-                                  content: Text(
-                                    'This is a Snackbar',
-                                    style: TextStyle(color: Colors.white54),
-                                  ),
-                                ));
-                              }
-                          }
-                        },
-                        style: const ButtonStyle(
-                          backgroundColor:
-                              MaterialStatePropertyAll(Colors.green),
-                        ),
-                        child: const Text(
-                          "Login",
-                          style: TextStyle(color: Colors.white, fontSize: 20.0),
-                        )),
-                  )
-                ],
-              ),
-            ],
-          ),
+                              default:
+                                {
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(const SnackBar(
+                                    content: Text(
+                                      'This is a Snackbar',
+                                      style: TextStyle(color: Colors.white54),
+                                    ),
+                                  ));
+                                }
+                            }
+                          },
+                          style: const ButtonStyle(
+                            backgroundColor:
+                                MaterialStatePropertyAll(Colors.green),
+                          ),
+                          child: const Text(
+                            "Login",
+                            style: TextStyle(color: Colors.white, fontSize: 20.0),
+                          )),
+                    )
+                  ],
+                ),
+              ],
+            ),
+
         ),
       ),
     );
