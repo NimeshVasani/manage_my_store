@@ -3,14 +3,14 @@ import 'package:provider/provider.dart';
 
 import '../../viewmodels/authentication/authviewmodel.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class ShopScreen extends StatefulWidget {
+  const ShopScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<ShopScreen> createState() => _ShopScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _ShopScreenState extends State<ShopScreen> {
   late AuthViewModel authViewModel;
 
   @override
@@ -24,13 +24,17 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: ElevatedButton(
-          onPressed:  () {
-            authViewModel.signOut();
+      backgroundColor: Colors.white,
+      body: SafeArea(
 
-          },
-          child: Text('logout'),
+        child: Center(
+          child: ElevatedButton(
+            onPressed:  () {
+              authViewModel.signOut();
+        
+            },
+            child: Text('logout'),
+          ),
         ),
       ),
     );

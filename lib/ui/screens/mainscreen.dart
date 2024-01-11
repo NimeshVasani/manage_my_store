@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:manage_my_store/ui/screens/profilescreen.dart';
 
-import 'homescreen.dart';
+import 'shopscreen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -13,75 +14,151 @@ class _MainScreenState extends State<MainScreen> {
   int selectedIndex = 0;
 
   static const List<Widget> _bottomNavScreens = [
-    HomeScreen(),
-    HomeScreen(),
-    HomeScreen(),
-    HomeScreen(),
+    ShopScreen(),
+    ProfileScreen(),
+    ShopScreen(),
+    ShopScreen(),
+  ];
+
+  final List<ScreenData> _screens1 = [
+    ScreenData(label: 'Home', icon: Icons.home),
+    ScreenData(label: 'Search', icon: Icons.search),
+
+  ];
+  final List<ScreenData> _screens2 = [
+    ScreenData(label: 'Favorite', icon: Icons.favorite),
+    ScreenData(label: 'Profile', icon: Icons.person),
+
   ];
 
   @override
   Widget build(BuildContext context) {
     return PopScope(
-        canPop:false,
-      child: Scaffold(
-        extendBody: true,
-        body: Center(child: _bottomNavScreens.elementAt(selectedIndex)),
-        bottomNavigationBar: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 15, right: 15, bottom: 10),
-            child: Container(
-              height: 80,
-              clipBehavior: Clip.hardEdge,
-              decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(25)),
-                  color: Colors.black),
-              child: BottomNavigationBar(
-                unselectedItemColor: Colors.white60,
-                selectedItemColor: Colors.white,
-                type: BottomNavigationBarType.fixed,
-                currentIndex: selectedIndex,
-                onTap: (int index) {
-                  setState(() {
-                    selectedIndex = index;
-                  });
-                },
-                items: [
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.home_outlined,
-                        color: Colors.white.withOpacity(0.5)),
-                    activeIcon:
-                        const Icon(Icons.home_outlined, color: Colors.white),
-                    label: "Home",
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.credit_card_rounded,
-                        color: Colors.white.withOpacity(0.5)),
-                    activeIcon: const Icon(Icons.credit_card_rounded,
-                        color: Colors.white),
-                    label: "Accounts",
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.money, color: Colors.white.withOpacity(0.5)),
-                    activeIcon: const Icon(Icons.money, color: Colors.white),
-                    label: "Move Money",
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.grid_view_outlined,
-                        color: Colors.white.withOpacity(0.5)),
-                    activeIcon:
-                        const Icon(Icons.grid_view_rounded, color: Colors.white),
-                    label: "More",
-                  ),
-                ],
-                iconSize: 35,
-                backgroundColor: Colors.transparent,
-                showSelectedLabels: true,
-                showUnselectedLabels: true,
+        canPop: false,
+        child: Scaffold(
+            floatingActionButton: SizedBox(
+              height: 70,
+              width: 70,
+              child: FloatingActionButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(35)),
+                backgroundColor: Colors.orange,
+                onPressed: () {},
+                child: const Icon(
+                  Icons.shopping_cart_outlined,
+                  color: Colors.white,
+                ),
               ),
             ),
-          ),
-        ),
-      ),
-    );
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerDocked,
+            body: Center(child: _bottomNavScreens.elementAt(selectedIndex)),
+            bottomNavigationBar: SafeArea(
+                bottom: false,
+                child: BottomAppBar(
+                    shape: const CircularNotchedRectangle(),
+                    notchMargin: 10.0,
+                    height: 85,
+                    color: Colors.black,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 50.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: _screens1
+                                    .asMap()
+                                    .entries
+                                    .map(
+                                      (entry) => GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        selectedIndex = entry.key;
+                                      });
+                                    },
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Icon(
+                                          entry.value.icon,
+                                          color: selectedIndex == entry.key
+                                              ? Colors.blue
+                                              : Colors.grey,
+                                        ),
+                                        Text(
+                                          entry.value.label,
+                                          style: TextStyle(
+                                            color: selectedIndex == entry.key
+                                                ? Colors.blue
+                                                : Colors.grey,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                )
+                                    .toList(),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 50.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisSize: MainAxisSize.max,
+                                children: _screens2
+                                    .asMap()
+                                    .entries
+                                    .map(
+                                      (entry) => GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        selectedIndex = entry.key;
+                                      });
+                                    },
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Icon(
+                                          entry.value.icon,
+                                          color: selectedIndex == entry.key
+                                              ? Colors.blue
+                                              : Colors.grey,
+                                        ),
+                                        Text(
+                                          entry.value.label,
+                                          style: TextStyle(
+                                            color: selectedIndex == entry.key
+                                                ? Colors.blue
+                                                : Colors.grey,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                )
+                                    .toList(),
+                              ),
+                            ),
+                          ),
+                        ]
+                      ),
+                    )))));
   }
+}
+
+class ScreenData {
+  final String label;
+  final IconData icon;
+  final Widget screen;
+
+  ScreenData(
+      {required this.label,
+      required this.icon,
+      this.screen = const SizedBox.shrink()});
 }
