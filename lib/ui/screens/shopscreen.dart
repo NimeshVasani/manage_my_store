@@ -27,7 +27,7 @@ class _ShopScreenState extends State<ShopScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green,
+      backgroundColor: const Color(0xFF355E3B),
       body: SafeArea(
           child: CustomScrollView(
               controller: _scrollController,
@@ -42,17 +42,18 @@ class _ShopScreenState extends State<ShopScreen> {
                     (context, index) => Container(
                           height: MediaQuery.of(context).size.height,
                           decoration: const BoxDecoration(
-                              color: Colors.white,
-                             ),
-                          child:  Column(
+                            color: Colors.white,
+                          ),
+                          child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                ElevatedButton(onPressed: (){
-                                  authViewModel.signOut();
-                                }, child: Text('data'))
+                                ElevatedButton(
+                                    onPressed: () {
+                                      authViewModel.signOut();
+                                    },
+                                    child: const Text('data'))
                               ]),
                         ),
-
                     childCount: 1))
           ])),
     );

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 SliverAppBar appBar() {
   return SliverAppBar(
-      backgroundColor: Colors.green,
+      backgroundColor: const Color(0xFF355E3B),
       surfaceTintColor: Colors.transparent,
       // Set this height
       expandedHeight: 300,
@@ -17,7 +17,7 @@ SliverAppBar appBar() {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Padding(
-                padding: EdgeInsets.all(10.0),
+                padding: EdgeInsets.only(bottom: 20.0,left: 30.0),
                 child: Text('Find your best item',style: TextStyle(fontWeight: FontWeight.w600),),
               ),
               Container(
@@ -43,7 +43,7 @@ SliverAppBar appBar() {
                     Padding(
                       padding: EdgeInsets.all(8.0),
                       child: Text(
-                        'Offers waiting for you',
+                        'We have something for you',
                         style: TextStyle(
                           fontSize: 20,
                           color: Colors.white,
@@ -53,26 +53,13 @@ SliverAppBar appBar() {
                     ),
                     Spacer(),
                     Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: EdgeInsets.only(right: 20.0,top: 8.0,bottom: 8.0),
                       child: Icon(
                         Icons.notifications_on_outlined,
                         color: Colors.white,
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Icon(
-                        Icons.access_time_rounded,
-                        color: Colors.white,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Icon(
-                        Icons.settings_outlined,
-                        color: Colors.white,
-                      ),
-                    ),
+
                   ],
                 ),
                 const SizedBox(height: 10,),
@@ -92,11 +79,11 @@ SliverAppBar appBar() {
                           color: Colors.transparent,
                           surfaceTintColor: Colors.transparent,
                           child: Image.asset(
-                              'assets/images/login_img.png', fit: BoxFit.fill),
+                              'assets/images/offer_${index+1}.png', fit: BoxFit.fill),
                         ),
                       );
                     },
-                    viewportFraction: 0.5,
+                    viewportFraction: 0.6,
                     scale: 0.6 ,
                     itemCount: 3,
                     index: 1,
