@@ -26,6 +26,23 @@ class _ShopScreenState extends State<ShopScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var listImg = [
+      'assets/images/general.png',
+      'assets/images/fruits.png',
+      'assets/images/vegitables.png',
+      'assets/images/asian.png',
+      'assets/images/american.png',
+      'assets/images/oil.png',
+    ];
+    var lisName = [
+      'General',
+      'Fruits',
+      'Vegetables',
+      'Asian',
+      'American',
+      'Oil'
+    ];
+
     return Scaffold(
       backgroundColor: const Color(0xFF355E3B),
       body: SafeArea(
@@ -36,7 +53,6 @@ class _ShopScreenState extends State<ShopScreen> {
             appBar(),
             SliverList(
                 delegate: SliverChildBuilderDelegate(
-
                     // The builder function returns a ListTile with a title that
                     // displays the index of the current item.
                     (context, index) => Container(
@@ -47,11 +63,48 @@ class _ShopScreenState extends State<ShopScreen> {
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                ElevatedButton(
-                                    onPressed: () {
-                                      authViewModel.signOut();
-                                    },
-                                    child: const Text('data'))
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                                  child: SizedBox(
+                                    height: 130,
+                                    child: ListView.builder(
+                                      scrollDirection: Axis.horizontal,
+                                      itemCount: 6,
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        return Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 10.0, right: 10.0),
+                                          child: SizedBox(
+                                            width: 90,
+                                            child: Column(
+                                              children: [
+                                                Image.asset(
+                                                  listImg[index],
+                                                  height: 100,
+                                                  width: 80,
+                                                  fit: BoxFit.contain,
+                                                ),
+                                                Text(
+                                                  lisName[index],
+                                                  style: const TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w500),
+                                                  overflow: TextOverflow.ellipsis,
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(height: 10,),
+                                const Divider(
+                                  thickness: 5,
+                                  color: Colors.black12,
+                                )
                               ]),
                         ),
                     childCount: 1))

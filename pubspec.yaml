@@ -88,6 +88,13 @@ flutter:
     - assets/images/offer_2.png
     - assets/images/offer_3.png
     - assets/images/offer_4.png
+    - assets/images/american.png
+    - assets/images/asian.png
+    - assets/images/fruits.png
+    - assets/images/general.png
+    - assets/images/oil.png
+    - assets/images/vegitables.png
+    - assets/images/deals.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
