@@ -41,6 +41,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
+  card_swiper:
+    dependency: "direct main"
+    description:
+      name: card_swiper
+      sha256: "21e52a144decbf0054e7cfed8bbe46fc89635e6c86b767eaccfe7d5aeba32528"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.1"
   carousel_slider:
     dependency: "direct main"
     description:
@@ -105,6 +113,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.0.14"
+  dropdown_button2:
+    dependency: "direct main"
+    description:
+      name: dropdown_button2
+      sha256: b0fe8d49a030315e9eef6c7ac84ca964250155a6224d491c1365061bc974a9e1
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.9"
   email_validator:
     dependency: transitive
     description:
@@ -243,6 +259,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.9"
+  flutter_swipe_button:
+    dependency: "direct main"
+    description:
+      name: flutter_swipe_button
+      sha256: eaddf7bf536bf099f0bcf05bfa861a9ab5b7fb3e9fbfdf48c13180bdc2500ec9
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.1+1"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -365,6 +389,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.8.1"
+  keyboard_actions:
+    dependency: "direct main"
+    description:
+      name: keyboard_actions
+      sha256: "31e0ab2a706ac8f58887efa60efc1f19aecdf37d8ab0f665a0f156d1fbeab650"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.2.0"
   lints:
     dependency: transitive
     description:

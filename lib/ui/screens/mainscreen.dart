@@ -51,16 +51,14 @@ class _MainScreenState extends State<MainScreen> {
                     height: 85,
                     color: Colors.black,
                     child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                        child: CustomBottomAppbar(
-                          onChanged: (index){
-                            setState(() {
-                              selectedIndex = index;
-
-                            });
-                          },
-                        ),
-
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      child: CustomBottomAppbar(
+                        onChanged: (index) {
+                          setState(() {
+                            selectedIndex = index;
+                          });
+                        },
+                      ),
                     )))));
   }
 }

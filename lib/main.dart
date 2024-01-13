@@ -1,8 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
-import 'package:manage_my_store/ui/screens/loginOptionScreen.dart';
-import 'package:manage_my_store/ui/screens/loginscreen.dart';
+import 'package:manage_my_store/ui/screens/loginoptionscreen.dart';
 import 'package:manage_my_store/ui/screens/mainscreen.dart';
 import 'package:manage_my_store/viewmodels/authentication/authviewmodel.dart';
 import 'package:provider/provider.dart';
