@@ -14,6 +14,8 @@ class ShopScreen extends StatefulWidget {
 class _ShopScreenState extends State<ShopScreen> {
   late AuthViewModel authViewModel;
   late ScrollController _scrollController;
+  var selectedIndex = 0;
+
 
   @override
   void initState() {
@@ -27,6 +29,7 @@ class _ShopScreenState extends State<ShopScreen> {
   @override
   Widget build(BuildContext context) {
     var listImg = [
+      'assets/images/deals.png',
       'assets/images/general.png',
       'assets/images/fruits.png',
       'assets/images/vegitables.png',
@@ -35,6 +38,7 @@ class _ShopScreenState extends State<ShopScreen> {
       'assets/images/oil.png',
     ];
     var lisName = [
+      'Deals',
       'General',
       'Fruits',
       'Vegetables',
@@ -42,7 +46,6 @@ class _ShopScreenState extends State<ShopScreen> {
       'American',
       'Oil'
     ];
-
     return Scaffold(
       backgroundColor: const Color(0xFF355E3B),
       body: SafeArea(
@@ -61,10 +64,24 @@ class _ShopScreenState extends State<ShopScreen> {
                             color: Colors.white,
                           ),
                           child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
+                                const Padding(
+                                  padding: EdgeInsets.only(
+                                      right: 20.0, bottom: 10.0),
+                                  child: Text(
+                                    'Show all',
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.blueAccent,
+                                        fontWeight: FontWeight.w600,
+                                        decoration: TextDecoration.underline,
+                                        decorationColor: Colors.blueAccent),
+                                  ),
+                                ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                                  padding: const EdgeInsets.only(
+                                      left: 10.0, right: 10.0),
                                   child: SizedBox(
                                     height: 130,
                                     child: ListView.builder(
@@ -72,27 +89,50 @@ class _ShopScreenState extends State<ShopScreen> {
                                       itemCount: 6,
                                       itemBuilder:
                                           (BuildContext context, int index) {
-                                        return Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 10.0, right: 10.0),
-                                          child: SizedBox(
-                                            width: 90,
-                                            child: Column(
-                                              children: [
-                                                Image.asset(
-                                                  listImg[index],
-                                                  height: 100,
-                                                  width: 80,
-                                                  fit: BoxFit.contain,
-                                                ),
-                                                Text(
-                                                  lisName[index],
-                                                  style: const TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.w500),
-                                                  overflow: TextOverflow.ellipsis,
-                                                )
-                                              ],
+                                        return InkWell(
+                                        onTap: () {
+                                            setState(() {
+                                              selectedIndex = index;
+                                              _scrollController.animateTo(
+                                                300-kToolbarHeight,
+                                                duration: const Duration(
+                                                    milliseconds: 500),
+                                                curve: Curves.easeInOut,
+                                              );
+                                            });
+                                          },
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 10.0, right: 10.0),
+                                            child: Container(
+                                              decoration: selectedIndex == index
+                                                  ? BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10.0),
+                                                      border: Border.all(
+                                                          color: Colors.green,
+                                                          width: 2))
+                                                  : const BoxDecoration(),
+                                              width: 90,
+                                              child: Column(
+                                                children: [
+                                                  Image.asset(
+                                                    listImg[index],
+                                                    height: 100,
+                                                    width: 80,
+                                                    fit: BoxFit.contain,
+                                                  ),
+                                                  Text(
+                                                    lisName[index],
+                                                    style: const TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w500),
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                  )
+                                                ],
+                                              ),
                                             ),
                                           ),
                                         );
@@ -100,7 +140,9 @@ class _ShopScreenState extends State<ShopScreen> {
                                     ),
                                   ),
                                 ),
-                                const SizedBox(height: 10,),
+                                const SizedBox(
+                                  height: 10,
+                                ),
                                 const Divider(
                                   thickness: 5,
                                   color: Colors.black12,

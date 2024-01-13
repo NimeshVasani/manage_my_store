@@ -26,7 +26,11 @@ SliverAppBar appBar() {
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(50.0),
-                        topRight: Radius.circular(50.0))),
+                        topRight: Radius.circular(50.0))
+                ),
+                child:   const Center(
+                  child: SizedBox(width:50,child: Divider(thickness: 3,color: Colors.black38,)),
+                ),
               )
             ],
           ),
