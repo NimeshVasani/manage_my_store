@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:manage_my_store/ui/widgets/shopscreenwidgets/appbar.dart';
 import 'package:manage_my_store/ui/widgets/shopscreenwidgets/categories.dart';
+import 'package:manage_my_store/ui/widgets/shopscreenwidgets/customgrid.dart';
 import 'package:provider/provider.dart';
 
 import '../../viewmodels/authentication/authviewmodel.dart';
@@ -15,7 +16,7 @@ class ShopScreen extends StatefulWidget {
 class _ShopScreenState extends State<ShopScreen> {
   late AuthViewModel authViewModel;
   late ScrollController _scrollController;
-
+  int selectedIndex = 0;
   @override
   void initState() {
     super.initState();
@@ -31,6 +32,7 @@ class _ShopScreenState extends State<ShopScreen> {
       backgroundColor: const Color(0xFF355E3B),
       body: SafeArea(
           child: CustomScrollView(
+              shrinkWrap: true,
               controller: _scrollController,
               physics: const ClampingScrollPhysics(),
               slivers: [
@@ -40,11 +42,11 @@ class _ShopScreenState extends State<ShopScreen> {
                     // The builder function returns a ListTile with a title that
                     // displays the index of the current item.
                     (context, index) => Container(
-                          height: MediaQuery.of(context).size.height,
                           decoration: const BoxDecoration(
                             color: Colors.white,
                           ),
                           child: Column(
+                              mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 const Padding(
@@ -62,6 +64,9 @@ class _ShopScreenState extends State<ShopScreen> {
                                 ),
                                 Categories(
                                   onChanged: (index) {
+                                    setState(() {
+                                      selectedIndex = index;
+                                    });
                                     _scrollController.animateTo(
                                       300 - kToolbarHeight,
                                       duration:
@@ -77,18 +82,11 @@ class _ShopScreenState extends State<ShopScreen> {
                                   thickness: 5,
                                   color: Colors.black12,
                                 ),
-                                GridView.count(
-                                    physics: const NeverScrollableScrollPhysics(),
-                                    shrinkWrap: true,
-                                    crossAxisCount: 2,
-                                    childAspectRatio: (5 / 3),
-                                    children: List.generate(30, (index) {
-                                      return Row(
-                                        children: [
-
-                                        ],
-                                      );
-                                    })),
+                                 Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: selectedIndex == 0 ?  CustomGridLayout() : Container()
+                                ),
+                                const SizedBox(height: 30,)
                               ]),
                         ),
                     childCount: 1))

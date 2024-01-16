@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:manage_my_store/ui/screens/loginoptionscreen.dart';
 import 'package:manage_my_store/ui/screens/mainscreen.dart';
 import 'package:manage_my_store/viewmodels/authentication/authviewmodel.dart';
@@ -37,6 +38,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return FutureBuilder<bool>(
       future: Provider.of<AuthViewModel>(context, listen: false).checkAuthenticationStatus(),
       builder: (context, snapshot) {
