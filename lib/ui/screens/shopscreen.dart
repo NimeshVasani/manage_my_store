@@ -17,6 +17,7 @@ class _ShopScreenState extends State<ShopScreen> {
   late AuthViewModel authViewModel;
   late ScrollController _scrollController;
   int selectedIndex = 0;
+
   @override
   void initState() {
     super.initState();
@@ -82,11 +83,16 @@ class _ShopScreenState extends State<ShopScreen> {
                                   thickness: 5,
                                   color: Colors.black12,
                                 ),
-                                 Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: selectedIndex == 0 ?  CustomGridLayout() : Container()
-                                ),
-                                const SizedBox(height: 30,)
+                                Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: selectedIndex == 0
+                                        ? const CustomGridLayout()
+                                        : Container(
+
+                                    )),
+                                const SizedBox(
+                                  height: 30,
+                                )
                               ]),
                         ),
                     childCount: 1))
