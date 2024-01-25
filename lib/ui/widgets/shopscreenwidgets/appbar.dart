@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 SliverAppBar appBar() {
   return SliverAppBar(
-      backgroundColor: const Color(0xFF355E3B),
+      backgroundColor: const Color(0xFF003300),
       surfaceTintColor: Colors.transparent,
       // Set this height
       expandedHeight: 300,
@@ -17,7 +17,7 @@ SliverAppBar appBar() {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Padding(
-                padding: EdgeInsets.only(bottom: 20.0,left: 30.0),
+                padding: EdgeInsets.only(bottom: 20.0,left: 15.0),
                 child: Text('Find your best item',style: TextStyle(fontWeight: FontWeight.w600),),
               ),
               Container(
@@ -40,7 +40,7 @@ SliverAppBar appBar() {
           background:  Container(
             decoration: const BoxDecoration(
             gradient: LinearGradient(
-              colors: [Color(0xFF355E3B), Color(0xFFff9966)], // Add your desired colors
+              colors: [Color(0xFF003300), Color(0xFF336600)], // Add your desired colors
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
             ),),
@@ -52,7 +52,7 @@ SliverAppBar appBar() {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: EdgeInsets.all(8.0),
+                        padding: EdgeInsets.only(left: 15.0,bottom: 8.0,top: 8.0),
                         child: Text(
                           'We have something for you',
                           style: TextStyle(

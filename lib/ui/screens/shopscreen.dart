@@ -31,7 +31,7 @@ class _ShopScreenState extends State<ShopScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF355E3B),
+      backgroundColor: const Color(0xFF003300),
 
       body: SafeArea(
           child: CustomScrollView(

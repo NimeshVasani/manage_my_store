@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:manage_my_store/ui/screens/profilescreen.dart';
+import 'package:manage_my_store/ui/screens/searchscreen.dart';
 import 'package:manage_my_store/ui/widgets/mainscreenwidgets/bottomappbar.dart';
 
 import 'shopscreen.dart';
@@ -16,8 +17,8 @@ class _MainScreenState extends State<MainScreen> {
 
   static const List<Widget> _bottomNavScreens = [
     ShopScreen(),
+    SearchScreen(),
     ProfileScreen(),
-    ShopScreen(),
     ShopScreen(),
   ];
 
