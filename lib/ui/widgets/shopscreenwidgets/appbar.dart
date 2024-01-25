@@ -37,65 +37,74 @@ SliverAppBar appBar() {
           centerTitle: false,
           titlePadding: EdgeInsets.zero,
           expandedTitleScale: 1,
-          background:  Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text(
-                        'We have something for you',
-                        style: TextStyle(
-                          fontSize: 20,
+          background:  Container(
+            decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Color(0xFF355E3B), Color(0xFFff9966)], // Add your desired colors
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),),
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text(
+                          'We have something for you',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                      Spacer(),
+                      Padding(
+                        padding: EdgeInsets.only(right: 20.0,top: 8.0,bottom: 8.0),
+                        child: Icon(
+                          Icons.notifications_on_outlined,
                           color: Colors.white,
-                          fontWeight: FontWeight.w600,
                         ),
                       ),
-                    ),
-                    Spacer(),
-                    Padding(
-                      padding: EdgeInsets.only(right: 20.0,top: 8.0,bottom: 8.0),
-                      child: Icon(
-                        Icons.notifications_on_outlined,
-                        color: Colors.white,
-                      ),
-                    ),
 
-                  ],
-                ),
-                const SizedBox(height: 10,),
-                SizedBox(
-                  height: 170,
-                  width: double.infinity,
-                  child: Swiper(
-                    itemBuilder:
-                        (BuildContext context, int index) {
-                      return Padding(
-                        padding: const EdgeInsets.only(bottom: 30.0),
-                        child: Card(
-                          elevation: 5.0,
-                          // Set the elevation value according to your preference
-                          clipBehavior: Clip.hardEdge,
-                          margin: EdgeInsets.zero,
-                          color: Colors.transparent,
-                          surfaceTintColor: Colors.transparent,
-                          child: Image.asset(
-                              'assets/images/offer_${index+1}.png', fit: BoxFit.fill),
-                        ),
-                      );
-                    },
-                    viewportFraction: 0.6,
-                    scale: 0.6 ,
-                    itemCount: 3,
-                    index: 1,
-                    loop: true,
-
+                    ],
                   ),
-                )
-              ])),
+                  const SizedBox(height: 10,),
+                  SizedBox(
+                    height: 170,
+                    width: double.infinity,
+                    child: Swiper(
+                      autoplay: true,
+                      itemBuilder:
+                          (BuildContext context, int index) {
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 30.0),
+                          child: Card(
+                            elevation: 5.0,
+                            // Set the elevation value according to your preference
+                            clipBehavior: Clip.hardEdge,
+                            margin: EdgeInsets.zero,
+                            color: Colors.transparent,
+                            surfaceTintColor: Colors.transparent,
+                            child: Image.asset(
+                                'assets/images/offer_${index+1}.png', fit: BoxFit.fill),
+                          ),
+                        );
+                      },
+                      viewportFraction: 0.6,
+                      scale: 0.6 ,
+                      itemCount: 3,
+                      index: 1,
+                      loop: true,
+
+                    ),
+                  )
+                ]),
+          )),
       snap: false,
       pinned: true,
       floating: false);

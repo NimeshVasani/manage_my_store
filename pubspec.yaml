@@ -96,6 +96,10 @@ flutter:
     - assets/images/oil.png
     - assets/images/vegitables.png
     - assets/images/deals.png
+    - assets/images/fruits_deals.png
+    - assets/images/cheese_deals.png
+    - assets/images/summer_deals.png
+    - assets/images/vegitables_deals.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

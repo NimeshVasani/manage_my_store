@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:manage_my_store/ui/widgets/shopscreenwidgets/appbar.dart';
 import 'package:manage_my_store/ui/widgets/shopscreenwidgets/categories.dart';
+import 'package:manage_my_store/ui/widgets/shopscreenwidgets/customdealslayout.dart';
 import 'package:manage_my_store/ui/widgets/shopscreenwidgets/customgrid.dart';
 import 'package:provider/provider.dart';
 
@@ -31,6 +32,7 @@ class _ShopScreenState extends State<ShopScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF355E3B),
+
       body: SafeArea(
           child: CustomScrollView(
               shrinkWrap: true,
@@ -86,10 +88,8 @@ class _ShopScreenState extends State<ShopScreen> {
                                 Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: selectedIndex == 0
-                                        ? const CustomGridLayout()
-                                        : Container(
-
-                                    )),
+                                        ? const CustomDealsLayout()
+                                        : const CustomGridLayout()),
                                 const SizedBox(
                                   height: 30,
                                 )

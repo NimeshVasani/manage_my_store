@@ -44,6 +44,7 @@ class _MainScreenState extends State<MainScreen> {
                 FloatingActionButtonLocation.centerDocked,
             body: Center(child: _bottomNavScreens.elementAt(selectedIndex)),
             bottomNavigationBar: SafeArea(
+                maintainBottomViewPadding: false,
                 bottom: false,
                 child: BottomAppBar(
                     shape: const CircularNotchedRectangle(),
