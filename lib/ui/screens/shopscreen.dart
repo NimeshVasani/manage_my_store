@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:manage_my_store/ui/widgets/shopscreenwidgets/appbar.dart';
-import 'package:manage_my_store/ui/widgets/shopscreenwidgets/categories.dart';
 import 'package:manage_my_store/ui/widgets/shopscreenwidgets/customdealslayout.dart';
 import 'package:manage_my_store/ui/widgets/shopscreenwidgets/customgrid.dart';
 import 'package:provider/provider.dart';
@@ -31,7 +30,7 @@ class _ShopScreenState extends State<ShopScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF003300),
+      backgroundColor: const Color(0xFF003366),
 
       body: SafeArea(
           child: CustomScrollView(
@@ -39,7 +38,12 @@ class _ShopScreenState extends State<ShopScreen> {
               controller: _scrollController,
               physics: const ClampingScrollPhysics(),
               slivers: [
-            appBar(),
+             CustomAppBar(onChanged: (index){
+              setState(() {
+                selectedIndex = index;
+                _scrollController.animateTo(40.0, duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
+              });
+            },),
             SliverList(
                 delegate: SliverChildBuilderDelegate(
                     // The builder function returns a ListTile with a title that
@@ -52,44 +56,10 @@ class _ShopScreenState extends State<ShopScreen> {
                               mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
-                                const Padding(
-                                  padding: EdgeInsets.only(
-                                      right: 20.0, bottom: 10.0),
-                                  child: Text(
-                                    'Show all',
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        color: Colors.blueAccent,
-                                        fontWeight: FontWeight.w600,
-                                        decoration: TextDecoration.underline,
-                                        decorationColor: Colors.blueAccent),
-                                  ),
-                                ),
-                                Categories(
-                                  onChanged: (index) {
-                                    setState(() {
-                                      selectedIndex = index;
-                                    });
-                                    _scrollController.animateTo(
-                                      300 - kToolbarHeight,
-                                      duration:
-                                          const Duration(milliseconds: 500),
-                                      curve: Curves.easeInOut,
-                                    );
-                                  },
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                const Divider(
-                                  thickness: 5,
-                                  color: Colors.black12,
-                                ),
-                                Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: selectedIndex == 0
-                                        ? const CustomDealsLayout()
-                                        : const CustomGridLayout()),
+                                const SizedBox(height: 5,),
+                                selectedIndex == 0
+                                    ? const CustomDealsLayout()
+                                    : const CustomGridLayout(),
                                 const SizedBox(
                                   height: 30,
                                 )

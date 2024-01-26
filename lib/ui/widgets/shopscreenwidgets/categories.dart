@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Categories extends StatefulWidget {
@@ -52,9 +51,10 @@ class _CategoriesState extends State<Categories> {
                 child: Container(
                   decoration: selectedIndex == index
                       ? BoxDecoration(
+                    color: Colors.white,
                           borderRadius: BorderRadius.circular(10.0),
-                          border: Border.all(color: Colors.green, width: 2))
-                      : const BoxDecoration(),
+                          border: Border.all(color: Colors.red, width: 3))
+                      : BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(10.0)),
                   width: 90,
                   child: Column(
                     children: [
@@ -66,7 +66,7 @@ class _CategoriesState extends State<Categories> {
                       ),
                       Text(
                         lisName[index],
-                        style: const TextStyle(fontWeight: FontWeight.w500),
+                        style: const TextStyle(fontWeight: FontWeight.w500,fontSize: 14,color: Colors.black),
                         overflow: TextOverflow.ellipsis,
                       )
                     ],
