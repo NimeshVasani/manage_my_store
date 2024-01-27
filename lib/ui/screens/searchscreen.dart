@@ -25,7 +25,7 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color(0xFF333300),
+        backgroundColor: const Color(0xFF003366),
         body: SafeArea(
             child: CustomScrollView(
                 shrinkWrap: true,

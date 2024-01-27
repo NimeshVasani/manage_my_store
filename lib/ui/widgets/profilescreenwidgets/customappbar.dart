@@ -40,13 +40,11 @@ class _CustomAppBarState extends State<CustomAppBar> {
         flexibleSpace: FlexibleSpaceBar(
             titlePadding: EdgeInsets.zero,
             background: Container(
-                decoration:  const BoxDecoration(
+                decoration: const BoxDecoration(
                     gradient: LinearGradient(
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
-                        colors: [
-                          Color(0xFF003366), Color(0xFF66ccff)
-                    ])),
+                        colors: [Color(0xFF003366), Color(0xFF66ccff)])),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [

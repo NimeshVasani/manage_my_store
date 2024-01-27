@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:manage_my_store/ui/widgets/profilescreenwidgets/customappbar.dart';
+import 'package:manage_my_store/ui/widgets/profilescreenwidgets/settinglist.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -13,29 +14,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
         body: CustomScrollView(
-          slivers: [
-            const CustomAppBar(),
-            SliverList(
-                delegate: SliverChildBuilderDelegate(
-                    (context, index) => Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            color: Colors.white,
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                              ],
-                            ),
-                          ),
+      slivers: [
+        const CustomAppBar(),
+        SliverList(
+            delegate: SliverChildBuilderDelegate(
+                (context, index) => const Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: 5,
                         ),
-                    childCount: 1))
-          ],
-        ));
+                        SettingList(),
+                        SizedBox(
+                          height: 50,
+                        ),
+                      ],
+                    ),
+                childCount: 1))
+      ],
+    ));
   }
 }

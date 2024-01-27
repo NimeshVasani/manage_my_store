@@ -4,7 +4,7 @@ import 'package:manage_my_store/ui/widgets/searchscreenwidgets/customsearchbar.d
 
 SliverAppBar appBar() {
   return SliverAppBar(
-      backgroundColor: const Color(0xFF333300),
+      backgroundColor: const Color(0xFF003366),
       surfaceTintColor: Colors.transparent,
       // Set this height
       expandedHeight: 120,
@@ -20,7 +20,7 @@ SliverAppBar appBar() {
           background: Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(
-                colors: [Color(0xFF333300), Color(0xFF999966)],
+                colors: [Color(0xFF003366), Color(0xFF66ccff)],
                 // Add your desired colors
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,

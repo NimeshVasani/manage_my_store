@@ -18,8 +18,8 @@ class _MainScreenState extends State<MainScreen> {
   static const List<Widget> _bottomNavScreens = [
     ShopScreen(),
     SearchScreen(),
-    ProfileScreen(),
     ShopScreen(),
+    ProfileScreen(),
   ];
 
   @override
