@@ -31,19 +31,22 @@ class _ShopScreenState extends State<ShopScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF003366),
-
       body: SafeArea(
           child: CustomScrollView(
               shrinkWrap: true,
               controller: _scrollController,
               physics: const ClampingScrollPhysics(),
               slivers: [
-             CustomAppBar(onChanged: (index){
-              setState(() {
-                selectedIndex = index;
-                _scrollController.animateTo(40.0, duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
-              });
-            },),
+            CustomAppBar(
+              onChanged: (index) {
+                setState(() {
+                  selectedIndex = index;
+                  _scrollController.animateTo(40.0,
+                      duration: const Duration(milliseconds: 500),
+                      curve: Curves.easeInOut);
+                });
+              },
+            ),
             SliverList(
                 delegate: SliverChildBuilderDelegate(
                     // The builder function returns a ListTile with a title that
@@ -56,7 +59,9 @@ class _ShopScreenState extends State<ShopScreen> {
                               mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
-                                const SizedBox(height: 5,),
+                                const SizedBox(
+                                  height: 5,
+                                ),
                                 selectedIndex == 0
                                     ? const CustomDealsLayout()
                                     : const CustomGridLayout(),

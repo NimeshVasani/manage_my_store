@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 class Categories extends StatefulWidget {
   final ValueChanged<int> onChanged;
+
   const Categories({super.key, required this.onChanged});
+
   @override
   State<Categories> createState() => _CategoriesState();
 }
@@ -48,28 +50,38 @@ class _CategoriesState extends State<Categories> {
               },
               child: Padding(
                 padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                child: Container(
-                  decoration: selectedIndex == index
-                      ? BoxDecoration(
-                    color: Colors.white,
-                          borderRadius: BorderRadius.circular(10.0),
-                          border: Border.all(color: Colors.red, width: 3))
-                      : BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(10.0)),
-                  width: 90,
-                  child: Column(
-                    children: [
-                      Image.asset(
-                        listImg[index],
-                        height: 100,
-                        width: 80,
-                        fit: BoxFit.contain,
-                      ),
-                      Text(
-                        lisName[index],
-                        style: const TextStyle(fontWeight: FontWeight.w500,fontSize: 14,color: Colors.black),
-                        overflow: TextOverflow.ellipsis,
-                      )
-                    ],
+                child: Card(
+                  surfaceTintColor: Colors.transparent,
+                  elevation: 20.0,
+                  child: Container(
+                    clipBehavior: Clip.hardEdge,
+                    decoration: selectedIndex == index
+                        ? BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10.0),
+                            border: Border.all(color: Colors.red, width: 2))
+                        : BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10.0)),
+                    width: 90,
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          listImg[index],
+                          height: 95,
+                          width: 80,
+                          fit: BoxFit.contain,
+                        ),
+                        Text(
+                          lisName[index],
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                              color: Colors.black),
+                          overflow: TextOverflow.ellipsis,
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
