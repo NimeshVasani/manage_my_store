@@ -1,10 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:manage_my_store/model/User.dart';
+import 'package:manage_my_store/model/user.dart';
+import 'package:manage_my_store/ui/widgets/loginscreenwidgets/appbar.dart';
+import 'package:manage_my_store/ui/widgets/loginscreenwidgets/nametextfield.dart';
 import 'package:manage_my_store/utils/Resource.dart';
-import 'package:manage_my_store/utils/Resource.dart';
+import 'package:manage_my_store/viewmodels/firestore/firestoreviewmodel.dart';
 import 'package:provider/provider.dart';
-import '../../utils/Resource.dart';
 import '../../viewmodels/authentication/authviewmodel.dart';
 import '../widgets/loginscreenwidgets/emailTextField.dart';
 import '../widgets/loginscreenwidgets/passwordTextField.dart';
@@ -18,62 +20,38 @@ class RegistrationScreen extends StatefulWidget {
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
   late AuthViewModel authViewModel;
+  late FireStoreViewModel fireStoreViewModel;
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController passwordController2 = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     authViewModel = Provider.of<AuthViewModel>(context, listen: false);
-
+    fireStoreViewModel =
+        Provider.of<FireStoreViewModel>(context, listen: false);
     // Other initialization logic
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
-      body: Container(
-        decoration: const BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage('assets/images/login_img_3.png'),
-                fit: BoxFit.cover)),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            mainAxisSize: MainAxisSize.max, // Take up all vertical space
+        resizeToAvoidBottomInset: true,
+        backgroundColor: Colors.black,
+        body: Container(
+          decoration: const BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage('assets/images/login_img_3.png'),
+                  fit: BoxFit.cover)),
+          child: ListView(
+            shrinkWrap: false,
             children: [
-              AppBar(
-                backgroundColor: Colors.transparent,
-                leading: Padding(
-                  padding: const EdgeInsets.only(
-                    top: 10,
-                    left: 10,
-                  ),
-                  child: InkWell(
-                    splashColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Wrap(
-                        crossAxisAlignment: WrapCrossAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.arrow_back_ios,
-                            color: Colors.blue,
-                          ),
-                          Text(
-                            " Back",
-                            style: TextStyle(
-                              color: Colors.blue,
-                              fontSize: 20,
-                            ),
-                          ),
-                        ]),
-                  ),
-                ),
-                leadingWidth: 100,
+              customAppBar(context),
+              const SizedBox(
+                height: 300,
               ),
-              const Spacer(),
               Container(
                 width: double.infinity,
                 alignment: Alignment.center,
@@ -99,9 +77,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               const SizedBox(
                 height: 50,
               ),
-              emailTextField(),
-              const PasswordTextField(),
-              const PasswordTextField(),
+              nameTextField(nameController),
+              emailTextField(emailController),
+              PasswordTextField(
+                textEditingController: passwordController,
+              ),
+              PasswordTextField(
+                textEditingController: passwordController2,
+              ),
               Container(
                 width: double.infinity,
                 padding:
@@ -109,22 +92,69 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 child: ElevatedButton(
                     onPressed: () async {
                       BuildContext currentContext = context;
-                      Resources<FirebaseUser?> firebaseUser =
+                      Resources<User?> firebaseUser =
                           await authViewModel.registerWithEmailAndPassword(
-                              "nims4", "nims4@gmail.com", "123456");
-                      switch(firebaseUser.data){
-                        case Success :
-                          if (!context.mounted) return;
-                          Navigator.pop(currentContext);
-                        case Error :
-                          SnackBar(content: Text(firebaseUser.message.toString()),);
-                        case Loading :
-                          SnackBar(content: Text('Loading..'),);
+                              nameController.text,
+                              emailController.text,
+                              passwordController.text);
+                      switch (firebaseUser.runtimeType) {
+                        case const (Success<User?>):
+                          Resources<bool> fireStoreValue =
+                              await fireStoreViewModel.addUserIntoUserList(
+                                  FirebaseUser(nameController.text,
+                                      firebaseUser.data!.email!, null));
+                          switch (fireStoreValue.runtimeType) {
+                            case const (Success<bool>):
+                              {
+                                if (!context.mounted) return;
+                                Navigator.pop(context);
+                                break;
+                              }
+                            case const (Error<bool>):
+                              {
+                                if (!context.mounted) return;
+
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(SnackBar(
+                                  content:
+                                      Text(fireStoreValue.message.toString()),
+                                ));
+                                break;
+                              }
+                            case const (Loading<bool?>):
+                              {
+                                if (!context.mounted) return;
+
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(const SnackBar(
+                                  content: Text('Loading..'),
+                                ));
+                                break;
+                              }
+                          }
+
+                        case const (Error<User?>):
+                          {
+                            if (!context.mounted) return;
+
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text(firebaseUser.message.toString()),
+                            ));
+                            break;
+                          }
+                        case const (Loading<User?>):
+                          {
+                            if (!context.mounted) return;
+
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
+                              content: Text('Loading..'),
+                            ));
+                            break;
+                          }
                       }
 
-                      if (firebaseUser.data?.email != null) {
-
-                      }
+                      if (firebaseUser.data?.email != null) {}
                     },
                     style: const ButtonStyle(
                       backgroundColor: MaterialStatePropertyAll(Colors.green),
@@ -136,15 +166,17 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               ),
             ],
           ),
-        ),
-      ),
-    );
+        ));
   }
 
   @override
   void dispose() {
     // Dispose of dependencies registered with GetIt here
     GetIt.I.reset();
+    emailController.dispose();
+    nameController.dispose();
+    passwordController.dispose();
+    passwordController2.dispose();
     super.dispose();
   }
 }

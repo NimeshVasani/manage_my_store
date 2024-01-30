@@ -13,6 +13,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      automaticallyImplyLeading: false,
         expandedHeight: 260,
         elevation: 20.0,
         collapsedHeight: kToolbarHeight,

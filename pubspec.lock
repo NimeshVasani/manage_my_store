@@ -81,6 +81,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
+  cloud_firestore:
+    dependency: "direct main"
+    description:
+      name: cloud_firestore
+      sha256: "8bfbb5a2edbc6052452326d60de0113fea2bcbf081d34a3f8e45c8b38307b31c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.14.0"
+  cloud_firestore_platform_interface:
+    dependency: transitive
+    description:
+      name: cloud_firestore_platform_interface
+      sha256: "73ff438fe46028f0e19f55da18b6ddc6906ab750562cd7d9ffab77ff8c0c4307"
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.1.0"
+  cloud_firestore_web:
+    dependency: transitive
+    description:
+      name: cloud_firestore_web
+      sha256: "232e45e95970d3a6baab8f50f9c3a6e2838d145d9d91ec9a7392837c44296397"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.9.0"
   collection:
     dependency: transitive
     description:
@@ -117,10 +141,10 @@ packages:
     dependency: transitive
     description:
       name: desktop_webview_auth
-      sha256: "328533e6b8f5ad72b890a49d1d1df0fc827b319b0da30c7612bdb284ebe448d2"
+      sha256: c4dce73346a7be7243c90ac3b1a68586d9f0e2c2710e81e07d758e80a6ebd920
       url: "https://pub.dev"
     source: hosted
-    version: "0.0.14"
+    version: "0.0.15"
   dropdown_button2:
     dependency: "direct main"
     description:

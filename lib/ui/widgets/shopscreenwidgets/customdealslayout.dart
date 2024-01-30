@@ -1,7 +1,7 @@
+import 'package:badges/badges.dart' as badges;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:manage_my_store/ui/widgets/customtext.dart';
-import 'package:badges/badges.dart' as badges;
 
 class CustomDealsLayout extends StatefulWidget {
   const CustomDealsLayout({super.key});
@@ -86,7 +86,9 @@ class _CustomDealsLayoutState extends State<CustomDealsLayout> {
                           style: ButtonStyle(
                               backgroundColor:
                                   MaterialStateProperty.all(Colors.red)),
-                          onPressed: () {},
+                          onPressed: () {
+
+                          },
                           child: customTextView('Activate Offer', 20,
                               FontWeight.w600, Colors.white, 1),
                         ),
@@ -104,3 +106,4 @@ class _CustomDealsLayoutState extends State<CustomDealsLayout> {
     );
   }
 }
+

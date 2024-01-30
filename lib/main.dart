@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:manage_my_store/ui/screens/loginoptionscreen.dart';
 import 'package:manage_my_store/ui/screens/mainscreen.dart';
 import 'package:manage_my_store/viewmodels/authentication/authviewmodel.dart';
+import 'package:manage_my_store/viewmodels/firestore/firestoreviewmodel.dart';
 import 'package:provider/provider.dart';
 
 import 'firebase_options.dart';
@@ -22,6 +23,9 @@ void main() async {
       providers: [
         ChangeNotifierProvider(
           create: (context) => AuthViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => FireStoreViewModel(),
         ),
       ],
       child: const MyApp(),

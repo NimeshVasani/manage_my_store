@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class PasswordTextField extends StatefulWidget {
-  const PasswordTextField({super.key});
+  final TextEditingController textEditingController;
+
+  const PasswordTextField({super.key, required this.textEditingController});
 
   @override
   State<PasswordTextField> createState() => _PasswordTextFieldState();
@@ -19,6 +21,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
       elevation: 2,
       margin: const EdgeInsets.only(left: 30, right: 30, bottom: 20),
       child: TextField(
+        controller: widget.textEditingController,
         textAlignVertical: TextAlignVertical.center,
         keyboardType: TextInputType.visiblePassword,
         obscureText: obscureText,

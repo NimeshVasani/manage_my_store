@@ -1,37 +1,34 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-import '../../model/User.dart';
+import '../../model/user.dart';
 import '../../utils/Resource.dart';
 
 class AuthRepository {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-
-  Future<Resources<FirebaseUser?>> registerWithEmailAndPassword(String name,
-      String email, String password) async {
+  Future<Resources<User?>> registerWithEmailAndPassword(
+      String name, String email, String password) async {
     try {
       await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
-      return Success(FirebaseUser(name, email, password));
+      return Success(_auth.currentUser);
     } catch (e) {
       // Handle registration error
       return Error(e.toString());
     }
-
   }
 
-  Future<Resources<FirebaseUser?>> loginWithEmailAndPassword(String email,
-      String password) async {
+  Future<Resources<User?>> loginWithEmailAndPassword(
+      String email, String password) async {
     try {
-      final userCredential = await _auth.signInWithEmailAndPassword(
+      await _auth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
-      return Success(FirebaseUser(
-          userCredential.additionalUserInfo?.username, email, password));
+      return Success(_auth.currentUser);
     } catch (e) {
       // Handle login error
       return Error(e.toString());
@@ -43,7 +40,7 @@ class AuthRepository {
 
     // Obtain the auth details from the request
     final GoogleSignInAuthentication? googleAuth =
-    await googleUser?.authentication;
+        await googleUser?.authentication;
 
     // Create a new credential
     final credential = GoogleAuthProvider.credential(
