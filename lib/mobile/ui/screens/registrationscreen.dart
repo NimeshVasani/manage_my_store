@@ -2,13 +2,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:manage_my_store/model/user.dart';
-import 'package:manage_my_store/ui/widgets/loginscreenwidgets/appbar.dart';
-import 'package:manage_my_store/ui/widgets/loginscreenwidgets/nametextfield.dart';
 import 'package:manage_my_store/utils/Resource.dart';
 import 'package:manage_my_store/viewmodels/firestore/firestoreviewmodel.dart';
 import 'package:provider/provider.dart';
-import '../../viewmodels/authentication/authviewmodel.dart';
+import '../../../viewmodels/authentication/authviewmodel.dart';
+import '../widgets/loginscreenwidgets/appbar.dart';
 import '../widgets/loginscreenwidgets/emailTextField.dart';
+import '../widgets/loginscreenwidgets/nametextfield.dart';
 import '../widgets/loginscreenwidgets/passwordTextField.dart';
 
 class RegistrationScreen extends StatefulWidget {

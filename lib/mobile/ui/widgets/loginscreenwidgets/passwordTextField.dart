@@ -31,6 +31,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
         maxLines: 1,
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
+          border: InputBorder.none,
           contentPadding: const EdgeInsets.symmetric(horizontal: 20),
           focusedBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Colors.blueAccent, width: 1.5),

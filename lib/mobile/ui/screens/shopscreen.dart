@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:manage_my_store/ui/widgets/shopscreenwidgets/appbar.dart';
-import 'package:manage_my_store/ui/widgets/shopscreenwidgets/customdealslayout.dart';
-import 'package:manage_my_store/ui/widgets/shopscreenwidgets/customgrid.dart';
+import 'package:manage_my_store/mobile/ui/widgets/shopscreenwidgets/appbar.dart';
 import 'package:provider/provider.dart';
 
-import '../../viewmodels/authentication/authviewmodel.dart';
+import '../../../viewmodels/authentication/authviewmodel.dart';
+import '../widgets/shopscreenwidgets/customdealslayout.dart';
+import '../widgets/shopscreenwidgets/customgrid.dart';
+
 
 class ShopScreen extends StatefulWidget {
   const ShopScreen({super.key});

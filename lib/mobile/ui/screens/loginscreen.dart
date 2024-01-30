@@ -4,9 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
-import '../../model/user.dart';
-import '../../utils/Resource.dart';
-import '../../viewmodels/authentication/authviewmodel.dart';
+import '../../../utils/Resource.dart';
+import '../../../viewmodels/authentication/authviewmodel.dart';
 import '../widgets/loginscreenwidgets/emailTextField.dart';
 import '../widgets/loginscreenwidgets/passwordTextField.dart';
 import 'mainscreen.dart';

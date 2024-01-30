@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:manage_my_store/mobile/ui/screens/profilescreen.dart';
+import 'package:manage_my_store/mobile/ui/screens/searchscreen.dart';
 import 'package:manage_my_store/model/user.dart';
-import 'package:manage_my_store/ui/screens/profilescreen.dart';
-import 'package:manage_my_store/ui/screens/searchscreen.dart';
-import 'package:manage_my_store/ui/widgets/mainscreenwidgets/bottomappbar.dart';
 import 'package:manage_my_store/viewmodels/firestore/firestoreviewmodel.dart';
 import 'package:provider/provider.dart';
 
+import '../widgets/mainscreenwidgets/bottomappbar.dart';
 import 'shopscreen.dart';
 
 class MainScreen extends StatefulWidget {

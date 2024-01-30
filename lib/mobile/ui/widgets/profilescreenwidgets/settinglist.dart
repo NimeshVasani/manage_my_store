@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:manage_my_store/ui/screens/loginoptionscreen.dart';
-import 'package:manage_my_store/ui/widgets/customtext.dart';
+import 'package:manage_my_store/mobile/ui/screens/loginoptionscreen.dart';
+import 'package:manage_my_store/mobile/ui/widgets/customtext.dart';
 import 'package:provider/provider.dart';
 
-import '../../../viewmodels/authentication/authviewmodel.dart';
+import '../../../../viewmodels/authentication/authviewmodel.dart';
 
 class SettingList extends StatefulWidget {
   const SettingList({super.key});
@@ -14,7 +14,6 @@ class SettingList extends StatefulWidget {
 }
 
 class _SettingListState extends State<SettingList> {
-
   var settingNames = [
     'Delivery Address',
     'Order History',
@@ -41,10 +40,10 @@ class _SettingListState extends State<SettingList> {
       itemBuilder: (BuildContext context, int index) {
         return InkWell(
           onTap: () async {
-           await authViewModel.signOut();
-           if(!context.mounted) return;
-            Navigator.pushReplacement(
-                context, CupertinoPageRoute(builder: (BuildContext context) {
+            await authViewModel.signOut();
+            if (!context.mounted) return;
+            Navigator.pushReplacement(context,
+                CupertinoPageRoute(builder: (BuildContext context) {
               return const LoginOptionsScreen();
             }));
           },
@@ -60,9 +59,8 @@ class _SettingListState extends State<SettingList> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: customTextView(
-                      settingNames[index], 18, FontWeight.w500, Colors.black,
-                      1),
+                  child: customTextView(settingNames[index], 18,
+                      FontWeight.w500, Colors.black, 1),
                 ),
               ),
             ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:manage_my_store/ui/widgets/mainscreenwidgets/screendata.dart';
+import 'package:manage_my_store/mobile/ui/widgets/mainscreenwidgets/screendata.dart';
 
 class CustomBottomAppbar extends StatefulWidget {
   final ValueChanged<int> onChanged;

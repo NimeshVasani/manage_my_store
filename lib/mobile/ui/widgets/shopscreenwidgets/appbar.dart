@@ -1,6 +1,6 @@
-import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
-import 'package:manage_my_store/ui/widgets/shopscreenwidgets/categories.dart';
+
+import 'categories.dart';
 
 class CustomAppBar extends StatefulWidget {
   final ValueChanged<int> onChanged;

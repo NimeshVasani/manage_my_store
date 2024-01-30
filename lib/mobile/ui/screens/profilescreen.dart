@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:manage_my_store/ui/widgets/profilescreenwidgets/customappbar.dart';
-import 'package:manage_my_store/ui/widgets/profilescreenwidgets/settinglist.dart';
-import 'package:provider/provider.dart';
 
-import '../../viewmodels/authentication/authviewmodel.dart';
+import '../widgets/profilescreenwidgets/customappbar.dart';
+import '../widgets/profilescreenwidgets/settinglist.dart';
+
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});

@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
-import 'package:manage_my_store/ui/widgets/customtext.dart';
+import 'package:flutter/material.dart';
+
+import '../customtext.dart';
 
 class CustomGridLayout extends StatefulWidget {
   const CustomGridLayout({super.key});
@@ -74,10 +75,15 @@ class _CustomGridLayoutState extends State<CustomGridLayout> {
                       ],
                     ),
                     Image.asset('assets/images/fruits.png'),
-                    const SizedBox(height: 5,),
-                    customTextView('American mango', 20, FontWeight.w500, Colors.black,1),
-                    customTextView('Produced in latin america', 14, FontWeight.normal, Colors.black54,1),
-                    customTextView('\$12.99/lb', 18, FontWeight.bold, Colors.black,1),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    customTextView(
+                        'American mango', 20, FontWeight.w500, Colors.black, 1),
+                    customTextView('Produced in latin america', 14,
+                        FontWeight.normal, Colors.black54, 1),
+                    customTextView(
+                        '\$12.99/lb', 18, FontWeight.bold, Colors.black, 1),
                   ],
                 ),
               ),

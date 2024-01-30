@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 Widget emailTextField(TextEditingController textEditingController) {
-  return  Card(
+  return Card(
     color: Colors.white,
     surfaceTintColor: Colors.white,
     elevation: 2,
@@ -15,14 +15,13 @@ Widget emailTextField(TextEditingController textEditingController) {
       autocorrect: false,
       maxLines: 1,
       decoration: const InputDecoration(
-        contentPadding: EdgeInsets.symmetric(horizontal: 20),
-        focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.blueAccent, width: 1.5),
-            borderRadius: BorderRadius.all(Radius.circular(8.0))),
-        hintText: 'Enter Email Address',
-        prefixIcon: Icon(Icons.email)
-      ),
-      
+          border: InputBorder.none,
+          contentPadding: EdgeInsets.symmetric(horizontal: 20),
+          focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.blueAccent, width: 1.5),
+              borderRadius: BorderRadius.all(Radius.circular(8.0))),
+          hintText: 'Enter Email Address',
+          prefixIcon: Icon(Icons.email)),
     ),
   );
 }

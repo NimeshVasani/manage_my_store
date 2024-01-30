@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:manage_my_store/ui/widgets/customtext.dart';
+import 'package:manage_my_store/mobile/ui/widgets/customtext.dart';
 
 class CustomAppBar extends StatefulWidget {
   const CustomAppBar({super.key});
@@ -13,7 +12,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      automaticallyImplyLeading: false,
+        automaticallyImplyLeading: false,
         expandedHeight: 260,
         elevation: 20.0,
         collapsedHeight: kToolbarHeight,
