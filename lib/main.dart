@@ -2,7 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:manage_my_store/viewmodels/authentication/authviewmodel.dart';
+import 'package:manage_my_store/viewmodels/authentication/mobileauthviewmodel.dart';
+import 'package:manage_my_store/viewmodels/authentication/webauthviewmodel.dart';
 import 'package:manage_my_store/viewmodels/firestore/firestoreviewmodel.dart';
 import 'package:manage_my_store/web/ui/screens/adminlogin.dart';
 import 'package:manage_my_store/web/ui/screens/adminmainscreen.dart';
@@ -23,10 +24,15 @@ void main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (context) => AuthViewModel(),
+          create: (context) => MobileAuthViewModel(),
         ),
         ChangeNotifierProvider(
           create: (context) => FireStoreViewModel(),
+        ),
+
+        //web change notifier
+        ChangeNotifierProvider(
+          create: (context) => WebAuthViewModel(),
         ),
       ],
       child: !kIsWeb ? const MyApp() : const MyWebApp(),
@@ -46,7 +52,7 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitDown,
     ]);
     return FutureBuilder<bool>(
-      future: Provider.of<AuthViewModel>(context, listen: false)
+      future: Provider.of<MobileAuthViewModel>(context, listen: false)
           .checkAuthenticationStatus(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -86,7 +92,7 @@ class MyWebApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<bool>(
-      future: Provider.of<AuthViewModel>(context, listen: false)
+      future: Provider.of<MobileAuthViewModel>(context, listen: false)
           .checkAuthenticationStatus(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:manage_my_store/mobile/ui/widgets/shopscreenwidgets/appbar.dart';
 import 'package:provider/provider.dart';
 
-import '../../../viewmodels/authentication/authviewmodel.dart';
+import '../../../viewmodels/authentication/mobileauthviewmodel.dart';
 import '../widgets/shopscreenwidgets/customdealslayout.dart';
 import '../widgets/shopscreenwidgets/customgrid.dart';
 
@@ -15,14 +15,14 @@ class ShopScreen extends StatefulWidget {
 }
 
 class _ShopScreenState extends State<ShopScreen> {
-  late AuthViewModel authViewModel;
+  late MobileAuthViewModel authViewModel;
   late ScrollController _scrollController;
   int selectedIndex = 0;
 
   @override
   void initState() {
     super.initState();
-    authViewModel = Provider.of<AuthViewModel>(context, listen: false);
+    authViewModel = Provider.of<MobileAuthViewModel>(context, listen: false);
     _scrollController = ScrollController();
 
     // Other initialization logic

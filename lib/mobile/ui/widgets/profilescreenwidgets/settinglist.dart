@@ -4,7 +4,7 @@ import 'package:manage_my_store/mobile/ui/screens/loginoptionscreen.dart';
 import 'package:manage_my_store/mobile/ui/widgets/customtext.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../viewmodels/authentication/authviewmodel.dart';
+import '../../../../viewmodels/authentication/mobileauthviewmodel.dart';
 
 class SettingList extends StatefulWidget {
   const SettingList({super.key});
@@ -26,12 +26,12 @@ class _SettingListState extends State<SettingList> {
     'Logout'
   ];
 
-  late AuthViewModel authViewModel;
+  late MobileAuthViewModel authViewModel;
 
   @override
   void initState() {
     super.initState();
-    authViewModel = Provider.of<AuthViewModel>(context, listen: false);
+    authViewModel = Provider.of<MobileAuthViewModel>(context, listen: false);
   }
 
   @override

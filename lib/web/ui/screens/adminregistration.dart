@@ -1,29 +1,33 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:manage_my_store/viewmodels/authentication/webauthviewmodel.dart';
+import 'package:manage_my_store/mobile/ui/screens/loginscreen.dart';
+import 'package:manage_my_store/mobile/ui/widgets/loginscreenwidgets/emailTextField.dart';
+import 'package:manage_my_store/mobile/ui/widgets/loginscreenwidgets/passwordTextField.dart';
 import 'package:manage_my_store/web/ui/screens/adminmainscreen.dart';
-import 'package:manage_my_store/web/ui/screens/adminregistration.dart';
-import 'package:manage_my_store/web/ui/widgets/adminloginwidgets/loginappbar.dart';
 import 'package:manage_my_store/web/ui/widgets/adminloginwidgets/loginheading.dart';
+import 'package:manage_my_store/web/ui/widgets/adminregistrationwidgets/adminnametextfield.dart';
 import 'package:provider/provider.dart';
 
-import '../../../mobile/ui/widgets/customtext.dart';
-import '../../../mobile/ui/widgets/loginscreenwidgets/emailTextField.dart';
-import '../../../mobile/ui/widgets/loginscreenwidgets/passwordTextField.dart';
 import '../../../utils/Resource.dart';
+import '../../../viewmodels/authentication/webauthviewmodel.dart';
+import '../widgets/adminloginwidgets/loginappbar.dart';
 
-class AdminLoginScreen extends StatefulWidget {
-  const AdminLoginScreen({super.key});
+class AdminRegistration extends StatefulWidget {
+  const AdminRegistration({super.key});
 
   @override
-  State<AdminLoginScreen> createState() => _AdminLoginScreenState();
+  State<AdminRegistration> createState() => _AdminRegistrationState();
 }
 
-class _AdminLoginScreenState extends State<AdminLoginScreen> {
+class _AdminRegistrationState extends State<AdminRegistration> {
   late WebAuthViewModel authViewModel;
   TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController storeNameController = TextEditingController();
+  TextEditingController storeLocationController = TextEditingController();
+  TextEditingController passwordController1 = TextEditingController();
+  TextEditingController passwordController2 = TextEditingController();
 
   @override
   void initState() {
@@ -36,7 +40,7 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: loginAppBar('Manage Your Store\n With Satisfaction'),
+      appBar: loginAppBar('Register your Store\n Start growing today.'),
       backgroundColor: Colors.white,
       body: Container(
         width: double.infinity,
@@ -53,26 +57,39 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
                 Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
+                    const SizedBox(
+                      height: 50,
+                    ),
                     Card(
                       clipBehavior: Clip.hardEdge,
                       elevation: 2.0,
                       surfaceTintColor: Colors.transparent,
                       color: Colors.white,
                       child: SizedBox(
-                        width: 400,
-                        height: 400,
+                        width: 600,
+                        height: 600,
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            loginHeading('Admin login'),
-                            const Spacer(
-                              flex: 1,
+                            loginHeading('Store Registration'),
+                            const SizedBox(
+                              height: 20,
                             ),
+                            adminNameTextField(nameController,
+                                'Enter your full name', Icons.man_2),
+                            adminNameTextField(storeNameController,
+                                'Enter Store name', Icons.store),
+                            adminNameTextField(
+                                storeLocationController,
+                                'Enter Store address',
+                                Icons.add_location_rounded),
                             emailTextField(emailController),
                             PasswordTextField(
-                                textEditingController: passwordController),
+                                textEditingController: passwordController1),
+                            PasswordTextField(
+                                textEditingController: passwordController2),
                             Container(
                               width: double.infinity,
                               padding: const EdgeInsets.only(
@@ -82,7 +99,7 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
                                     final loginStatus =
                                         await authViewModel.loginAdmin(
                                             emailController.text,
-                                            passwordController.text);
+                                            passwordController1.text);
                                     switch (loginStatus.runtimeType) {
                                       case const (Success<User?>):
                                         {
@@ -91,7 +108,7 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
                                           Navigator.of(context).pushReplacement(
                                               CupertinoPageRoute(
                                                   builder: (context) {
-                                            return const AdminMainScreen();
+                                            return const LoginScreen();
                                           }));
                                           break;
                                         }
@@ -114,40 +131,20 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
                                         MaterialStatePropertyAll(Colors.green),
                                   ),
                                   child: const Text(
-                                    "Login",
+                                    "Register",
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 20.0),
                                   )),
                             ),
                             const SizedBox(
-                              height: 5,
-                            ),
-                            Center(
-                                child: customTextView('Forgot password?', 16,
-                                    FontWeight.w200, Colors.blue, 1)),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Center(
-                                child: InkWell(
-                              onTap: () {
-                                Navigator.push(context, CupertinoPageRoute(
-                                    builder: (BuildContext context) {
-                                  return const AdminRegistration();
-                                }));
-                              },
-                              child: customTextView('New user? Register here.',
-                                  16, FontWeight.w200, Colors.blue, 1),
-                            )),
-                            const Spacer(
-                              flex: 2,
+                              height: 20,
                             ),
                           ],
                         ),
                       ),
-                    ),
+                    )
                   ],
-                ),
+                )
               ],
             ),
           ),

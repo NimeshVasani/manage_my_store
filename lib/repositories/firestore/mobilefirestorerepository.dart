@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:manage_my_store/model/user.dart';
 import 'package:manage_my_store/utils/Resource.dart';
 
-class FireStoreRepository {
+class MobileFireStoreRepository {
   final FirebaseFirestore db = FirebaseFirestore.instance;
   final firebaseAuth = FirebaseAuth.instance;
 

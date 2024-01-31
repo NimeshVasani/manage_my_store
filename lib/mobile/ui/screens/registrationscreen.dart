@@ -5,7 +5,7 @@ import 'package:manage_my_store/model/user.dart';
 import 'package:manage_my_store/utils/Resource.dart';
 import 'package:manage_my_store/viewmodels/firestore/firestoreviewmodel.dart';
 import 'package:provider/provider.dart';
-import '../../../viewmodels/authentication/authviewmodel.dart';
+import '../../../viewmodels/authentication/mobileauthviewmodel.dart';
 import '../widgets/loginscreenwidgets/appbar.dart';
 import '../widgets/loginscreenwidgets/emailTextField.dart';
 import '../widgets/loginscreenwidgets/nametextfield.dart';
@@ -19,7 +19,7 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
-  late AuthViewModel authViewModel;
+  late MobileAuthViewModel authViewModel;
   late FireStoreViewModel fireStoreViewModel;
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -29,7 +29,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   @override
   void initState() {
     super.initState();
-    authViewModel = Provider.of<AuthViewModel>(context, listen: false);
+    authViewModel = Provider.of<MobileAuthViewModel>(context, listen: false);
     fireStoreViewModel =
         Provider.of<FireStoreViewModel>(context, listen: false);
     // Other initialization logic

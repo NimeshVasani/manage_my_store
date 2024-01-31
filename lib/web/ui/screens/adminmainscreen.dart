@@ -1,5 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:manage_my_store/web/ui/screens/adminlogin.dart';
+import 'package:provider/provider.dart';
+
+import '../../../viewmodels/authentication/webauthviewmodel.dart';
 
 class AdminMainScreen extends StatefulWidget {
   const AdminMainScreen({super.key});
@@ -9,6 +13,18 @@ class AdminMainScreen extends StatefulWidget {
 }
 
 class _AdminMainScreenState extends State<AdminMainScreen> {
+  late WebAuthViewModel authViewModel;
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    authViewModel = Provider.of<WebAuthViewModel>(context, listen: false);
+
+    // Other initialization logic
+  }
+
   final List<String> options = [
     'Add Items',
     'Item Stocks',
@@ -88,7 +104,10 @@ class _AdminMainScreenState extends State<AdminMainScreen> {
               title: const Text('Logout'),
               onTap: () {
                 // Handle Logout
-               // FirebaseAuth.instance.signOut();
+               authViewModel.signOut();
+               Navigator.pushReplacement(context, CupertinoPageRoute(builder: (BuildContext context){
+                 return const AdminLoginScreen();
+               }));
               },
             ),
           ],

@@ -5,7 +5,7 @@ import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
 import '../../../utils/Resource.dart';
-import '../../../viewmodels/authentication/authviewmodel.dart';
+import '../../../viewmodels/authentication/mobileauthviewmodel.dart';
 import '../widgets/loginscreenwidgets/emailTextField.dart';
 import '../widgets/loginscreenwidgets/passwordTextField.dart';
 import 'mainscreen.dart';
@@ -18,14 +18,14 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  late AuthViewModel authViewModel;
+  late MobileAuthViewModel authViewModel;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    authViewModel = Provider.of<AuthViewModel>(context, listen: false);
+    authViewModel = Provider.of<MobileAuthViewModel>(context, listen: false);
 
     // Other initialization logic
   }
@@ -164,7 +164,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void dispose() {
     // Dispose of dependencies registered with GetIt here
-    GetIt.I.unregister<AuthViewModel>();
+    GetIt.I.unregister<MobileAuthViewModel>();
     super.dispose();
   }
 }

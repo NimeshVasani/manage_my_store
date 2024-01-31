@@ -1,13 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 
-import '../../model/user.dart';
-import '../../repositories/authentication/authrepository.dart';
+import '../../repositories/authentication/mobileauthrepository.dart';
 import '../../utils/Resource.dart';
 
 
-class AuthViewModel with ChangeNotifier {
-  final AuthRepository _authRepository = AuthRepository();
+class MobileAuthViewModel with ChangeNotifier {
+  final MobileAuthRepository _authRepository = MobileAuthRepository();
 
   bool _isAuthenticated = false;
   bool get isAuthenticated => _isAuthenticated;
