@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-
 import '../../utils/Resource.dart';
 
 class WebAuthRepository {
@@ -19,19 +18,21 @@ class WebAuthRepository {
     }
   }
 
-  Future<Resources<User?>> loginAdmin(
+  Future<Resources<User>> loginAdmin(
       String email, String password) async {
     try {
       await _auth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
-      return Success(_auth.currentUser);
+      return Success(_auth.currentUser!);
     } catch (e) {
       // Handle login error
       return Error(e.toString());
     }
   }
+
+
   Future<void> signOut() async {
     await _auth.signOut();
   }

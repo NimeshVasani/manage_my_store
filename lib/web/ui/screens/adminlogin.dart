@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:manage_my_store/viewmodels/authentication/webauthviewmodel.dart';
+import 'package:manage_my_store/viewmodels/firestore/webfirestoreviewmodel.dart';
 import 'package:manage_my_store/web/ui/screens/adminmainscreen.dart';
 import 'package:manage_my_store/web/ui/screens/adminregistration.dart';
 import 'package:manage_my_store/web/ui/widgets/adminloginwidgets/loginappbar.dart';
@@ -22,6 +23,7 @@ class AdminLoginScreen extends StatefulWidget {
 
 class _AdminLoginScreenState extends State<AdminLoginScreen> {
   late WebAuthViewModel authViewModel;
+  late WebFireStoreViewModel fireStoreViewModel;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -29,7 +31,8 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
   void initState() {
     super.initState();
     authViewModel = Provider.of<WebAuthViewModel>(context, listen: false);
-
+    fireStoreViewModel =
+        Provider.of<WebFireStoreViewModel>(context, listen: false);
     // Other initialization logic
   }
 
@@ -84,16 +87,38 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
                                             emailController.text,
                                             passwordController.text);
                                     switch (loginStatus.runtimeType) {
-                                      case const (Success<User?>):
+                                      case const (Success<User>):
                                         {
-                                          if (!mounted) return;
-
-                                          Navigator.of(context).pushReplacement(
-                                              CupertinoPageRoute(
-                                                  builder: (context) {
-                                            return const AdminMainScreen();
-                                          }));
-                                          break;
+                                          final adminStatus =
+                                              await fireStoreViewModel
+                                                  .checkUserOrAdmin(
+                                                      loginStatus.data!.uid);
+                                          switch (adminStatus.runtimeType) {
+                                            case const (Success<String>):
+                                              {
+                                                if (!mounted) return;
+                                                Navigator.of(context)
+                                                    .pushReplacement(
+                                                        CupertinoPageRoute(
+                                                            builder: (context) {
+                                                  return const AdminMainScreen();
+                                                }));
+                                                break;
+                                              }
+                                            default:
+                                              {
+                                                authViewModel.signOut();
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(SnackBar(
+                                                  content: Text(
+                                                    loginStatus.message
+                                                        .toString(),
+                                                    style: const TextStyle(
+                                                        color: Colors.white54),
+                                                  ),
+                                                ));
+                                              }
+                                          }
                                         }
 
                                       default:

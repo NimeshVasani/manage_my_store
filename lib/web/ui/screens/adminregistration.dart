@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:manage_my_store/mobile/ui/screens/loginscreen.dart';
 import 'package:manage_my_store/mobile/ui/widgets/loginscreenwidgets/emailTextField.dart';
 import 'package:manage_my_store/mobile/ui/widgets/loginscreenwidgets/passwordTextField.dart';
+import 'package:manage_my_store/model/store.dart';
+import 'package:manage_my_store/viewmodels/firestore/webfirestoreviewmodel.dart';
 import 'package:manage_my_store/web/ui/screens/adminmainscreen.dart';
 import 'package:manage_my_store/web/ui/widgets/adminloginwidgets/loginheading.dart';
 import 'package:manage_my_store/web/ui/widgets/adminregistrationwidgets/adminnametextfield.dart';
@@ -22,6 +24,7 @@ class AdminRegistration extends StatefulWidget {
 
 class _AdminRegistrationState extends State<AdminRegistration> {
   late WebAuthViewModel authViewModel;
+  late WebFireStoreViewModel fireStoreViewModel;
   TextEditingController emailController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   TextEditingController storeNameController = TextEditingController();
@@ -33,6 +36,8 @@ class _AdminRegistrationState extends State<AdminRegistration> {
   void initState() {
     super.initState();
     authViewModel = Provider.of<WebAuthViewModel>(context, listen: false);
+    fireStoreViewModel =
+        Provider.of<WebFireStoreViewModel>(context, listen: false);
 
     // Other initialization logic
   }
@@ -97,22 +102,51 @@ class _AdminRegistrationState extends State<AdminRegistration> {
                               child: ElevatedButton(
                                   onPressed: () async {
                                     final loginStatus =
-                                        await authViewModel.loginAdmin(
+                                        await authViewModel.registerAdmin(
+                                            nameController.text,
                                             emailController.text,
                                             passwordController1.text);
                                     switch (loginStatus.runtimeType) {
                                       case const (Success<User?>):
                                         {
-                                          if (!mounted) return;
+                                          final storeStatus =
+                                              await fireStoreViewModel
+                                                  .addStoreIntoStoreList(
+                                                      FirebaseStore(
+                                                          nameController.text,
+                                                          emailController.text,
+                                                          '',
+                                                          storeNameController
+                                                              .text,
+                                                          storeLocationController
+                                                              .text));
 
-                                          Navigator.of(context).pushReplacement(
-                                              CupertinoPageRoute(
-                                                  builder: (context) {
-                                            return const LoginScreen();
-                                          }));
-                                          break;
+                                          switch (storeStatus.runtimeType) {
+                                            case const (Success<bool>):
+                                              {
+                                                if (!mounted) return;
+                                                Navigator.of(context)
+                                                    .pushReplacement(
+                                                        CupertinoPageRoute(
+                                                            builder: (context) {
+                                                  return const LoginScreen();
+                                                }));
+                                                break;
+                                              }
+                                            default:
+                                              {
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(SnackBar(
+                                                  content: Text(
+                                                    loginStatus.message
+                                                        .toString(),
+                                                    style: const TextStyle(
+                                                        color: Colors.white54),
+                                                  ),
+                                                ));
+                                              }
+                                          }
                                         }
-
                                       default:
                                         {
                                           ScaffoldMessenger.of(context)
@@ -131,7 +165,7 @@ class _AdminRegistrationState extends State<AdminRegistration> {
                                         MaterialStatePropertyAll(Colors.green),
                                   ),
                                   child: const Text(
-                                    "Register",
+                                    "Register store",
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 20.0),
                                   )),

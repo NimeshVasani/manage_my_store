@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:manage_my_store/viewmodels/authentication/mobileauthviewmodel.dart';
 import 'package:manage_my_store/viewmodels/authentication/webauthviewmodel.dart';
-import 'package:manage_my_store/viewmodels/firestore/firestoreviewmodel.dart';
+import 'package:manage_my_store/viewmodels/firestore/mobilefirestoreviewmodel.dart';
+import 'package:manage_my_store/viewmodels/firestore/webfirestoreviewmodel.dart';
 import 'package:manage_my_store/web/ui/screens/adminlogin.dart';
 import 'package:manage_my_store/web/ui/screens/adminmainscreen.dart';
 import 'package:provider/provider.dart';
@@ -27,12 +28,15 @@ void main() async {
           create: (context) => MobileAuthViewModel(),
         ),
         ChangeNotifierProvider(
-          create: (context) => FireStoreViewModel(),
+          create: (context) => MobileFireStoreViewModel(),
         ),
 
         //web change notifier
         ChangeNotifierProvider(
           create: (context) => WebAuthViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => WebFireStoreViewModel(),
         ),
       ],
       child: !kIsWeb ? const MyApp() : const MyWebApp(),
@@ -106,7 +110,7 @@ class MyWebApp extends StatelessWidget {
           bool isAuthenticated = snapshot.data ?? false;
 
           return MaterialApp(
-            title: 'Flutter Demo',
+            title: 'Manage My Store',
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),

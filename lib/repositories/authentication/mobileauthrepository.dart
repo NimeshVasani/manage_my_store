@@ -19,14 +19,14 @@ class MobileAuthRepository {
     }
   }
 
-  Future<Resources<User?>> loginWithEmailAndPassword(
+  Future<Resources<User>> loginWithEmailAndPassword(
       String email, String password) async {
     try {
       await _auth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
-      return Success(_auth.currentUser);
+      return Success(_auth.currentUser!);
     } catch (e) {
       // Handle login error
       return Error(e.toString());

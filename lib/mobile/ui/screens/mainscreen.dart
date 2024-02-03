@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:manage_my_store/mobile/ui/screens/profilescreen.dart';
 import 'package:manage_my_store/mobile/ui/screens/searchscreen.dart';
 import 'package:manage_my_store/model/user.dart';
-import 'package:manage_my_store/viewmodels/firestore/firestoreviewmodel.dart';
+import 'package:manage_my_store/viewmodels/firestore/mobilefirestoreviewmodel.dart';
 import 'package:provider/provider.dart';
 
 import '../widgets/mainscreenwidgets/bottomappbar.dart';
@@ -19,13 +19,13 @@ final _formKey = GlobalKey<FormState>();
 
 class _MainScreenState extends State<MainScreen> {
   int selectedIndex = 0;
-  late FireStoreViewModel fireStoreViewModel;
+  late MobileFireStoreViewModel fireStoreViewModel;
 
   @override
   void initState() {
     super.initState();
     fireStoreViewModel =
-        Provider.of<FireStoreViewModel>(context, listen: false);
+        Provider.of<MobileFireStoreViewModel>(context, listen: false);
 
     // Other initialization logic
   }

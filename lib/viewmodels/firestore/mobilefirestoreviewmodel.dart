@@ -4,11 +4,15 @@ import 'package:manage_my_store/repositories/firestore/mobilefirestorerepository
 
 import '../../utils/Resource.dart';
 
-class FireStoreViewModel with ChangeNotifier{
+class MobileFireStoreViewModel with ChangeNotifier{
 
   final _fireStoreRepository = MobileFireStoreRepository();
 
   Future<Resources<bool>> addUserIntoUserList(FirebaseUser user) async{
     return await _fireStoreRepository.addUserIntoUserList(user);
+  }
+
+  Future<Resources<String>> checkUserOrAdmin(String userID) async {
+    return await _fireStoreRepository.checkUserOrAdmin(userID);
   }
 }

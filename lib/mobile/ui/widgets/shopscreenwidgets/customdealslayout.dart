@@ -1,5 +1,3 @@
-import 'package:badges/badges.dart' as badges;
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../customtext.dart';

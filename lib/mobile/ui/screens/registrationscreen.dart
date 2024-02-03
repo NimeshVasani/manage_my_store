@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:manage_my_store/model/user.dart';
 import 'package:manage_my_store/utils/Resource.dart';
-import 'package:manage_my_store/viewmodels/firestore/firestoreviewmodel.dart';
+import 'package:manage_my_store/viewmodels/firestore/mobilefirestoreviewmodel.dart';
 import 'package:provider/provider.dart';
 import '../../../viewmodels/authentication/mobileauthviewmodel.dart';
 import '../widgets/loginscreenwidgets/appbar.dart';
@@ -20,7 +20,7 @@ class RegistrationScreen extends StatefulWidget {
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
   late MobileAuthViewModel authViewModel;
-  late FireStoreViewModel fireStoreViewModel;
+  late MobileFireStoreViewModel fireStoreViewModel;
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -31,7 +31,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     super.initState();
     authViewModel = Provider.of<MobileAuthViewModel>(context, listen: false);
     fireStoreViewModel =
-        Provider.of<FireStoreViewModel>(context, listen: false);
+        Provider.of<MobileFireStoreViewModel>(context, listen: false);
     // Other initialization logic
   }
 
@@ -91,7 +91,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     const EdgeInsets.only(bottom: 50, left: 30, right: 30.0),
                 child: ElevatedButton(
                     onPressed: () async {
-                      BuildContext currentContext = context;
+
                       Resources<User?> firebaseUser =
                           await authViewModel.registerWithEmailAndPassword(
                               nameController.text,

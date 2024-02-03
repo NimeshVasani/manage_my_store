@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:manage_my_store/web/ui/screens/adminlogin.dart';
+import 'package:manage_my_store/web/ui/sliderscreens/dashboard.dart';
+import 'package:manage_my_store/web/ui/widgets/adminmainscreenwidgets/customAppbar.dart';
+import 'package:manage_my_store/web/ui/widgets/adminmainscreenwidgets/drawermenu.dart';
 import 'package:provider/provider.dart';
-
 import '../../../viewmodels/authentication/webauthviewmodel.dart';
 
 class AdminMainScreen extends StatefulWidget {
@@ -25,96 +27,64 @@ class _AdminMainScreenState extends State<AdminMainScreen> {
     // Other initialization logic
   }
 
-  final List<String> options = [
-    'Add Items',
-    'Item Stocks',
-    'New Orders',
-    'Return Items',
-    'Emails',
-    'Income/Outgoing',
-    'Logout',
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final List sliderScreens = [
+      const DashBoard(),
+    ];
+
+    int currentScreen = 0;
+
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Admin Panel'),
-      ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CircleAvatar(
-                    radius: 30,
-                    backgroundImage: AssetImage('assets/admin_avatar.png'),
+      backgroundColor: Colors.white,
+      body: Column(
+        children: [
+          Expanded(
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                SizedBox(
+                  width: 300,
+                  height: double.infinity,
+                  child: CustomDrawer(
+                    onValueChange: (int selectedIndex) {
+                      setState(() {
+                        currentScreen = selectedIndex;
+                      });
+                      switch (selectedIndex) {
+                        case 8:
+                          authViewModel.signOut();
+                          Navigator.pushReplacement(context, CupertinoPageRoute(
+                              builder: (BuildContext context) {
+                            return const AdminLoginScreen();
+                          }));
+                          break;
+                      }
+                    },
                   ),
-                  SizedBox(height: 10),
-                  Text(
-                    'Admin User',
-                    style: TextStyle(color: Colors.white, fontSize: 18),
+                ),
+                Expanded(
+                  child: Column(
+                    children: [
+                      customAppbar(),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 50.0,right: 50.0),
+                          child: SingleChildScrollView(
+                              child: sliderScreens[currentScreen]),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-            ListTile(
-              title: Text('Add Items'),
-              onTap: () {
-                // Handle Add Items
-              },
-            ),
-            ListTile(
-              title: Text('Item Stocks'),
-              onTap: () {
-                // Handle Item Stocks
-              },
-            ),
-            ListTile(
-              title: Text('New Orders'),
-              onTap: () {
-                // Handle New Orders
-              },
-            ),
-            ListTile(
-              title: Text('Return Items'),
-              onTap: () {
-                // Handle Return Items
-              },
-            ),
-            ListTile(
-              title: const Text('Emails'),
-              onTap: () {
-                // Handle Emails
-              },
-            ),
-            ListTile(
-              title: const Text('Income/Outgoing'),
-              onTap: () {
-                // Handle Income/Outgoing
-              },
-            ),
-            ListTile(
-              title: const Text('Logout'),
-              onTap: () {
-                // Handle Logout
-               authViewModel.signOut();
-               Navigator.pushReplacement(context, CupertinoPageRoute(builder: (BuildContext context){
-                 return const AdminLoginScreen();
-               }));
-              },
-            ),
-          ],
-        ),
-      ),
-      body: const Center(
-        child: Text('Admin Panel Content'),
+          ),
+        ],
       ),
     );
   }

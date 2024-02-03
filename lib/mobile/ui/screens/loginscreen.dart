@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:manage_my_store/viewmodels/firestore/mobilefirestoreviewmodel.dart';
 import 'package:provider/provider.dart';
 
 import '../../../utils/Resource.dart';
@@ -19,6 +21,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   late MobileAuthViewModel authViewModel;
+  late MobileFireStoreViewModel fireStoreViewModel;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -26,6 +29,8 @@ class _LoginScreenState extends State<LoginScreen> {
   void initState() {
     super.initState();
     authViewModel = Provider.of<MobileAuthViewModel>(context, listen: false);
+    fireStoreViewModel =
+        Provider.of<MobileFireStoreViewModel>(context, listen: false);
 
     // Other initialization logic
   }
@@ -119,15 +124,34 @@ class _LoginScreenState extends State<LoginScreen> {
                                   emailController.text,
                                   passwordController.text);
                           switch (loginStatus.runtimeType) {
-                            case const (Success<User?>):
+                            case const (Success<User>):
                               {
-                                if (!mounted) return;
-
-                                Navigator.of(context).pushReplacement(
-                                    CupertinoPageRoute(builder: (context) {
-                                  return const MainScreen();
-                                }));
-                                break;
+                                final userStatus = await fireStoreViewModel
+                                    .checkUserOrAdmin(loginStatus.data!.uid);
+                                switch (userStatus.runtimeType) {
+                                  case const (Success<String>):
+                                    {
+                                        if (!mounted) return;
+                                        Navigator.of(context).pushReplacement(
+                                            CupertinoPageRoute(
+                                                builder: (context) {
+                                          return const MainScreen();
+                                        }));
+                                        break;
+                                    }
+                                  default:
+                                    {
+                                      authViewModel.signOut();
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(const SnackBar(
+                                        content: Text(
+                                          'User is either admin or network error',
+                                          style:
+                                              TextStyle(color: Colors.white54),
+                                        ),
+                                      ));
+                                    }
+                                }
                               }
 
                             default:
