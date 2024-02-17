@@ -36,11 +36,15 @@ class _IncomeOutgoingsChartState extends State<IncomeOutgoingsChart> {
             ),
             const Spacer(),
             DropdownButton<String>(
+              dropdownColor: Colors.black87,
               value: selectedInterval,
               items: intervalOptions.map((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
-                  child: Text(value),
+                  child: Text(
+                    value,
+                    style: const TextStyle(color: Colors.white),
+                  ),
                 );
               }).toList(),
               onChanged: (String? newValue) {
@@ -53,11 +57,25 @@ class _IncomeOutgoingsChartState extends State<IncomeOutgoingsChart> {
         ),
         Expanded(
           child: SfCartesianChart(
+            plotAreaBorderWidth: 0.0,
             margin: EdgeInsets.zero,
             primaryXAxis: const CategoryAxis(
-              rangePadding: ChartRangePadding.none,
+              majorGridLines: MajorGridLines(width: 0),
+              majorTickLines: MajorTickLines(size: 0),
+              axisLine: AxisLine(width: 1, color: Colors.white),
+              labelStyle: TextStyle(color: Colors.white),
             ),
-            primaryYAxis: const NumericAxis(title: AxisTitle(text: 'Amount',textStyle: TextStyle(color: Colors.white))),
+            primaryYAxis: const NumericAxis(
+              title: AxisTitle(
+                  text: 'Amount', textStyle: TextStyle(color: Colors.white)),
+              axisLine: AxisLine(width: 1, color: Colors.white),
+              // Customize y-axis line appearance
+              majorGridLines: MajorGridLines(width: 0),
+              majorTickLines: MajorTickLines(size: 0, width: 0),
+              labelStyle: TextStyle(color: Colors.white),
+              minorGridLines: MinorGridLines(width: 0),
+              minorTickLines: MinorTickLines(size: 0),
+            ),
             series: <CartesianSeries>[
               AreaSeries<TransactionData, String>(
                 dataSource:
@@ -72,14 +90,12 @@ class _IncomeOutgoingsChartState extends State<IncomeOutgoingsChart> {
                 animationDelay: 0,
               ),
               AreaSeries<TransactionData, String>(
-                
                 dataSource:
                     selectedInterval == "Days" ? getWeekData() : getMonthData(),
                 xValueMapper: (TransactionData transaction, _) =>
                     transaction.day,
                 yValueMapper: (TransactionData transaction, _) =>
                     transaction.outgoings,
-
                 name: 'Outgoings',
                 color: Colors.red,
                 animationDuration: 1000,

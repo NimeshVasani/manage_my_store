@@ -10,6 +10,7 @@ Widget customTextView(String data, double fontSize, FontWeight fontWeight,
       fontWeight: fontWeight,
       color: color,
       overflow: TextOverflow.ellipsis,
+
     ),
     maxLines: maxLines,
   );

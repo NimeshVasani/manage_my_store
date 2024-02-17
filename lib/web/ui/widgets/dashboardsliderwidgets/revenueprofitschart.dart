@@ -36,11 +36,15 @@ class _RevenueProfitsChartState extends State<RevenueProfitsChart> {
             ),
             const Spacer(),
             DropdownButton<String>(
+              dropdownColor: Colors.black87,
               value: selectedInterval,
               items: intervalOptions.map((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
-                  child: Text(value),
+                  child: Text(
+                    value,
+                    style: const TextStyle(color: Colors.white),
+                  ),
                 );
               }).toList(),
               onChanged: (String? newValue) {
@@ -53,11 +57,22 @@ class _RevenueProfitsChartState extends State<RevenueProfitsChart> {
         ),
         Expanded(
           child: SfCartesianChart(
+            plotAreaBorderWidth: 0.0,
             margin: EdgeInsets.zero,
             primaryXAxis: const CategoryAxis(
-              title: AxisTitle(text: 'Revenue vs Profit'),
+              majorGridLines: MajorGridLines(width: 0),
+              majorTickLines: MajorTickLines(size: 0),
+              axisLine: AxisLine(width: 1, color: Colors.white),
+              labelStyle: TextStyle(color: Colors.white),
             ),
-            primaryYAxis: const NumericAxis(title: AxisTitle(text: 'Amount')),
+            primaryYAxis: const NumericAxis(
+              title: AxisTitle(
+                  text: 'Amount', textStyle: TextStyle(color: Colors.white)),
+              majorGridLines: MajorGridLines(width: 0),
+              majorTickLines: MajorTickLines(size: 0),
+              axisLine: AxisLine(width: 1, color: Colors.white),
+              labelStyle: TextStyle(color: Colors.white),
+            ),
             series: <CartesianSeries>[
               ColumnSeries<TransactionData, String>(
                 dataSource:
@@ -73,7 +88,7 @@ class _RevenueProfitsChartState extends State<RevenueProfitsChart> {
               ),
               ColumnSeries<TransactionData, String>(
                 dataSource:
-                selectedInterval == "Days" ? getWeekData() : getMonthData(),
+                    selectedInterval == "Days" ? getWeekData() : getMonthData(),
                 xValueMapper: (TransactionData transaction, _) =>
                     transaction.time,
                 yValueMapper: (TransactionData transaction, _) =>

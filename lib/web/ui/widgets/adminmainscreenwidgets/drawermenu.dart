@@ -43,7 +43,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
         elevation: 5.0,
         margin: EdgeInsets.zero,
         surfaceTintColor: Colors.transparent,
-        color: Colors.white,
+        color: Colors.black87,
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
@@ -93,15 +93,15 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     padding: const EdgeInsets.only(bottom: 2.0),
                     child: ListTile(
                       selected: selectedIndex == index ? true : false,
-                      selectedTileColor: Colors.black12,
-                      selectedColor: Colors.black87,
+                      selectedTileColor: Colors.white12,
+                      selectedColor: Colors.white,
                       titleTextStyle: TextStyle(
                           color:
-                              index == 8 ? Colors.red.shade500 : Colors.black54,
+                              index == 8 ? Colors.red.shade500 : Colors.white54,
                           fontWeight: FontWeight.w500,
                           fontSize: 18),
                       iconColor:
-                          index == 8 ? Colors.red.shade500 : Colors.black45,
+                          index == 8 ? Colors.red.shade500 : Colors.white54,
                       title: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
