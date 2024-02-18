@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 class ProductCategories extends StatefulWidget {
   final ValueChanged<int> onChanged;
+  final List listImg;
+  final List listName;
 
-  const ProductCategories({super.key, required this.onChanged});
+  const ProductCategories({super.key, required this.onChanged, required this.listImg, required this.listName});
 
   @override
   State<ProductCategories> createState() => _ProductCategoriesState();
@@ -12,24 +14,6 @@ class ProductCategories extends StatefulWidget {
 class _ProductCategoriesState extends State<ProductCategories> {
   var selectedIndex = 0;
 
-  var listImg = [
-    'assets/images/deals.png',
-    'assets/images/general.png',
-    'assets/images/fruits.png',
-    'assets/images/vegitables.png',
-    'assets/images/asian.png',
-    'assets/images/american.png',
-    'assets/images/oil.png',
-  ];
-  var lisName = [
-    'Deals',
-    'General',
-    'Fruits',
-    'Vegetables',
-    'Asian',
-    'American',
-    'Oil'
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -72,13 +56,13 @@ class _ProductCategoriesState extends State<ProductCategories> {
                         child: Column(
                           children: [
                             Image.asset(
-                              listImg[index],
+                              widget.listImg[index],
                               height: 95,
                               width: 80,
                               fit: BoxFit.contain,
                             ),
                             Text(
-                              lisName[index],
+                             widget.listName[index],
                               style: const TextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 16,
