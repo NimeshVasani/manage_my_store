@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 
-Widget customSearchBar() {
-  return const Card(
+Widget customSearchBar(EdgeInsets margin) {
+  return Card(
+    clipBehavior: Clip.hardEdge,
     color: Colors.white,
     surfaceTintColor: Colors.white,
     elevation: 2,
-    margin: EdgeInsets.only(left: 10, right: 10, bottom: 20),
-    child: TextField(
+    margin: margin,
+    shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(20.0))),
+    child: const TextField(
+      clipBehavior: Clip.hardEdge,
       textAlignVertical: TextAlignVertical.center,
       keyboardType: TextInputType.text,
       textInputAction: TextInputAction.search,
@@ -17,11 +21,12 @@ Widget customSearchBar() {
           contentPadding: EdgeInsets.symmetric(horizontal: 20),
           focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(color: Colors.blueAccent, width: 1.5),
-              borderRadius: BorderRadius.all(Radius.circular(8.0))),
+              borderRadius: BorderRadius.all(Radius.circular(20.0))),
           hintText: 'search by name or category',
-          prefixIcon: Icon(Icons.search_rounded)
-      ),
-
+          border: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.blueAccent, width: 1.5),
+              borderRadius: BorderRadius.all(Radius.circular(20.0))),
+          prefixIcon: Icon(Icons.search_rounded)),
     ),
   );
 }

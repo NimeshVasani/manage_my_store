@@ -38,12 +38,12 @@ class _AdminMainScreenState extends State<AdminMainScreen> {
 
 
     return Scaffold(
-      backgroundColor: Colors.black26,
+      backgroundColor: Colors.grey.shade100,
       body: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Expanded(
           child: SizedBox(
-            width: 1520,
+            width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
             child: Column(
               children: [
@@ -81,7 +81,7 @@ class _AdminMainScreenState extends State<AdminMainScreen> {
                             ),
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsets.only(left: 50.0,right: 50.0),
+                                padding: const EdgeInsets.only(left: 20.0,right: 20.0),
                                 child: SingleChildScrollView(
                                     child: sliderScreens[currentScreen]),
                               ),

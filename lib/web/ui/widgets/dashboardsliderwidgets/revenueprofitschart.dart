@@ -20,7 +20,7 @@ class _RevenueProfitsChartState extends State<RevenueProfitsChart> {
       children: <Widget>[
         Row(
           mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             const Spacer(),
             const Text(
@@ -36,14 +36,14 @@ class _RevenueProfitsChartState extends State<RevenueProfitsChart> {
             ),
             const Spacer(),
             DropdownButton<String>(
-              dropdownColor: Colors.black87,
+              dropdownColor: Colors.white,
               value: selectedInterval,
               items: intervalOptions.map((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(
                     value,
-                    style: const TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.black87),
                   ),
                 );
               }).toList(),
@@ -53,6 +53,7 @@ class _RevenueProfitsChartState extends State<RevenueProfitsChart> {
                 });
               },
             ),
+            const SizedBox(width: 30,)
           ],
         ),
         Expanded(
@@ -62,16 +63,16 @@ class _RevenueProfitsChartState extends State<RevenueProfitsChart> {
             primaryXAxis: const CategoryAxis(
               majorGridLines: MajorGridLines(width: 0),
               majorTickLines: MajorTickLines(size: 0),
-              axisLine: AxisLine(width: 1, color: Colors.white),
-              labelStyle: TextStyle(color: Colors.white),
+              axisLine: AxisLine(width: 2, color: Colors.black54),
+              labelStyle: TextStyle(color: Colors.black87),
             ),
             primaryYAxis: const NumericAxis(
               title: AxisTitle(
-                  text: 'Amount', textStyle: TextStyle(color: Colors.white)),
+                  text: 'Amount', textStyle: TextStyle(color: Colors.black54)),
               majorGridLines: MajorGridLines(width: 0),
               majorTickLines: MajorTickLines(size: 0),
-              axisLine: AxisLine(width: 1, color: Colors.white),
-              labelStyle: TextStyle(color: Colors.white),
+              axisLine: AxisLine(width: 2, color: Colors.black54),
+              labelStyle: TextStyle(color: Colors.black87),
             ),
             series: <CartesianSeries>[
               ColumnSeries<TransactionData, String>(

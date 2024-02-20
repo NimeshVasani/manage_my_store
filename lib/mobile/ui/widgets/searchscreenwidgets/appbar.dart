@@ -14,7 +14,7 @@ SliverAppBar appBar() {
       automaticallyImplyLeading: false,
       primary: false,
       flexibleSpace: FlexibleSpaceBar(
-          title: customSearchBar(),
+          title: customSearchBar( const EdgeInsets.only(left: 10, right: 10, bottom: 20)),
           centerTitle: false,
           titlePadding: EdgeInsets.zero,
           expandedTitleScale: 1,

@@ -43,7 +43,7 @@ class _IncomeOutgoingsChartState extends State<IncomeOutgoingsChart> {
                   value: value,
                   child: Text(
                     value,
-                    style: const TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.black54),
                   ),
                 );
               }).toList(),
@@ -62,17 +62,17 @@ class _IncomeOutgoingsChartState extends State<IncomeOutgoingsChart> {
             primaryXAxis: const CategoryAxis(
               majorGridLines: MajorGridLines(width: 0),
               majorTickLines: MajorTickLines(size: 0),
-              axisLine: AxisLine(width: 1, color: Colors.white),
-              labelStyle: TextStyle(color: Colors.white),
+              axisLine: AxisLine(width: 1, color: Colors.black54),
+              labelStyle: TextStyle(color: Colors.black54),
             ),
             primaryYAxis: const NumericAxis(
               title: AxisTitle(
-                  text: 'Amount', textStyle: TextStyle(color: Colors.white)),
-              axisLine: AxisLine(width: 1, color: Colors.white),
+                  text: 'Amount', textStyle: TextStyle(color: Colors.black54)),
+              axisLine: AxisLine(width: 1, color: Colors.black54),
               // Customize y-axis line appearance
               majorGridLines: MajorGridLines(width: 0),
               majorTickLines: MajorTickLines(size: 0, width: 0),
-              labelStyle: TextStyle(color: Colors.white),
+              labelStyle: TextStyle(color: Colors.black54),
               minorGridLines: MinorGridLines(width: 0),
               minorTickLines: MinorTickLines(size: 0),
             ),

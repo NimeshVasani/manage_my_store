@@ -43,7 +43,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
         elevation: 5.0,
         margin: EdgeInsets.zero,
         surfaceTintColor: Colors.transparent,
-        color: Colors.black87,
+        color: Colors.black54,
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [

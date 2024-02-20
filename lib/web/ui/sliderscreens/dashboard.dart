@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:manage_my_store/mobile/ui/widgets/customtext.dart';
 import 'package:manage_my_store/web/ui/widgets/dashboardsliderwidgets/incomeoutgoingchart.dart';
 import 'package:manage_my_store/web/ui/widgets/dashboardsliderwidgets/revenueprofitschart.dart';
+import 'package:manage_my_store/web/ui/widgets/dashboardsliderwidgets/sales_analysis_chart.dart';
 
 class DashBoard extends StatefulWidget {
   const DashBoard({super.key});
@@ -13,226 +14,98 @@ class DashBoard extends StatefulWidget {
 class _DashBoardState extends State<DashBoard> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Row(
+      mainAxisSize: MainAxisSize.max,
       children: [
-        Row(
-          children: [
-            Expanded(
-              flex: 1,
-              child: Card(
-                elevation: 2.0,
-                surfaceTintColor: Colors.transparent,
-                color: Colors.black87,
-                margin: EdgeInsets.zero,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      const SizedBox(
-                          width: 300, height: 300, child: RevenueProfitsChart()),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                              top: 50.0, left: 20.0, right: 20.0),
-                          child: customTextView(
-                              "When a price pattern signals a change in trend direction, it is known as a reversal pattern; a continuation pattern occurs when the trend continues in its existing direction following a brief pause. There are many patterns used by traders—here is how patterns are made and some of the most popular ones.,When a price pattern signals a change in trend direction, it is known as a reversal pattern; a continuation pattern occurs when the trend continues in its existing direction following a brief pause. There are many patterns used by traders—here is how patterns are made and some of the most popular ones.,When a price pattern signals a change in trend direction, it is known as a reversal pattern; a continuation pattern occurs when the trend continues in its existing direction following a brief pause. There are many patterns used by traders—here is how patterns are made and some of the most popular ones.,When a price pattern signals a change in trend direction, it is known as a reversal pattern; a continuation pattern occurs when the trend continues in its existing direction following a brief pause. There are many patterns used by traders—here is how patterns are made and some of the most popular ones",
-                              16,
-                              FontWeight.normal,
-                              Colors.blue,
-                              10,
-                              textAlign: TextAlign.justify),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
+        Expanded(
+          flex: 2,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Card(
+                elevation: 5.0,
+                child: Container(
+                    decoration: const BoxDecoration(color: Colors.white),
+                    height: 500,
+                    child: const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: SalesAnalysisChart(),
+                    )),
               ),
-            ),
-            const SizedBox(width: 20.0,),
-            Expanded(
-              flex: 1,
-              child: Card(
-                elevation: 2.0,
-                surfaceTintColor: Colors.transparent,
-                color: Colors.black87,
-                margin: EdgeInsets.zero,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      const SizedBox(
-                          width: 300, height: 300, child: IncomeOutgoingsChart()),
-                      Expanded(
-                        child: Padding(
+              const SizedBox(
+                height: 20.0,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 10.0),
+                      child: Card(
+                        elevation: 5.0,
+                        child: Container(
+                            decoration:
+                                const BoxDecoration(color: Colors.white),
+                            width: MediaQuery.of(context).size.width / 4 - 10,
+                            height: 310,
+                            child: const IncomeOutgoingsChart()),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Column(
+                      children: [
+                        Padding(
                           padding:
-                          const EdgeInsets.only(top: 50.0, left: 20.0, right: 20.0),
-                          child: customTextView(
-                              "When a price pattern signals a change in trend direction, it is known as a reversal pattern; a continuation pattern occurs when the trend continues in its existing direction following a brief pause. There are many patterns used by traders—here is how patterns are made and some of the most popular ones.,When a price pattern signals a change in trend direction, it is known as a reversal pattern; a continuation pattern occurs when the trend continues in its existing direction following a brief pause. There are many patterns used by traders—here is how patterns are made and some of the most popular ones.,When a price pattern signals a change in trend direction, it is known as a reversal pattern; a continuation pattern occurs when the trend continues in its existing direction following a brief pause. There are many patterns used by traders—here is how patterns are made and some of the most popular ones.,When a price pattern signals a change in trend direction, it is known as a reversal pattern; a continuation pattern occurs when the trend continues in its existing direction following a brief pause. There are many patterns used by traders—here is how patterns are made and some of the most popular ones",
-                              16,
-                              FontWeight.normal,
-                              Colors.blue,
-                              10,
-                              textAlign: TextAlign.justify),
+                              const EdgeInsets.only(left: 10.0, bottom: 5.0),
+                          child: Card(
+                            margin: EdgeInsets.zero,
+                            elevation: 5.0,
+                            child: Container(
+                                decoration:
+                                    const BoxDecoration(color: Colors.white),
+                                width:
+                                    MediaQuery.of(context).size.width / 4 - 10,
+                                height: 150,
+                                child: const IncomeOutgoingsChart()),
+                          ),
                         ),
-                      )
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10.0, top: 5.0),
+                          child: Card(
+                            elevation: 5.0,
+                            margin: EdgeInsets.zero,
+                            child: Container(
+                                decoration:
+                                    const BoxDecoration(color: Colors.white),
+                                width:
+                                    MediaQuery.of(context).size.width / 4 - 10,
+                                height: 150,
+                                child: const IncomeOutgoingsChart()),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ),
-            )
-          ],
+                ],
+              )
+            ],
+          ),
         ),
         const SizedBox(
-          height: 50,
+          height: 20,
         ),
-        Row(
-          children: [
-            Expanded(
-              flex: 1,
-              child: Card(
-                elevation: 2.0,
-                surfaceTintColor: Colors.transparent,
-                color: Colors.black87,
-                margin: EdgeInsets.zero,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      const SizedBox(
-                          width: 300, height: 300, child: RevenueProfitsChart()),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                              top: 50.0, left: 20.0, right: 20.0),
-                          child: customTextView(
-                              "When a price pattern signals a change in trend direction, it is known as a reversal pattern; a continuation pattern occurs when the trend continues in its existing direction following a brief pause. There are many patterns used by traders—here is how patterns are made and some of the most popular ones.,When a price pattern signals a change in trend direction, it is known as a reversal pattern; a continuation pattern occurs when the trend continues in its existing direction following a brief pause. There are many patterns used by traders—here is how patterns are made and some of the most popular ones.,When a price pattern signals a change in trend direction, it is known as a reversal pattern; a continuation pattern occurs when the trend continues in its existing direction following a brief pause. There are many patterns used by traders—here is how patterns are made and some of the most popular ones.,When a price pattern signals a change in trend direction, it is known as a reversal pattern; a continuation pattern occurs when the trend continues in its existing direction following a brief pause. There are many patterns used by traders—here is how patterns are made and some of the most popular ones",
-                              16,
-                              FontWeight.normal,
-                              Colors.blue,
-                              10,
-                              textAlign: TextAlign.justify),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
+        Expanded(
+          flex: 1,
+          child: Container(
+            decoration: const BoxDecoration(color: Colors.white),
+            child: const Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [],
             ),
-            const SizedBox(width: 20.0,),
-            Expanded(
-              flex: 1,
-              child: Card(
-                elevation: 2.0,
-                surfaceTintColor: Colors.transparent,
-                color: Colors.black87,
-                margin: EdgeInsets.zero,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      const SizedBox(
-                          width: 300, height: 300, child: IncomeOutgoingsChart()),
-                      Expanded(
-                        child: Padding(
-                          padding:
-                          const EdgeInsets.only(top: 50.0, left: 20.0, right: 20.0),
-                          child: customTextView(
-                              "When a price pattern signals a change in trend direction, it is known as a reversal pattern; a continuation pattern occurs when the trend continues in its existing direction following a brief pause. There are many patterns used by traders—here is how patterns are made and some of the most popular ones.,When a price pattern signals a change in trend direction, it is known as a reversal pattern; a continuation pattern occurs when the trend continues in its existing direction following a brief pause. There are many patterns used by traders—here is how patterns are made and some of the most popular ones.,When a price pattern signals a change in trend direction, it is known as a reversal pattern; a continuation pattern occurs when the trend continues in its existing direction following a brief pause. There are many patterns used by traders—here is how patterns are made and some of the most popular ones.,When a price pattern signals a change in trend direction, it is known as a reversal pattern; a continuation pattern occurs when the trend continues in its existing direction following a brief pause. There are many patterns used by traders—here is how patterns are made and some of the most popular ones",
-                              16,
-                              FontWeight.normal,
-                              Colors.blue,
-                              10,
-                              textAlign: TextAlign.justify),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            )
-          ],
-        ),
-        const SizedBox(
-          height: 50,
-        ),
-        Row(
-          children: [
-            Expanded(
-              flex: 1,
-              child: Card(
-                elevation: 2.0,
-                surfaceTintColor: Colors.transparent,
-                color: Colors.black87,
-                margin: EdgeInsets.zero,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      const SizedBox(
-                          width: 300, height: 300, child: RevenueProfitsChart()),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                              top: 50.0, left: 20.0, right: 20.0),
-                          child: customTextView(
-                              "When a price pattern signals a change in trend direction, it is known as a reversal pattern; a continuation pattern occurs when the trend continues in its existing direction following a brief pause. There are many patterns used by traders—here is how patterns are made and some of the most popular ones.,When a price pattern signals a change in trend direction, it is known as a reversal pattern; a continuation pattern occurs when the trend continues in its existing direction following a brief pause. There are many patterns used by traders—here is how patterns are made and some of the most popular ones.,When a price pattern signals a change in trend direction, it is known as a reversal pattern; a continuation pattern occurs when the trend continues in its existing direction following a brief pause. There are many patterns used by traders—here is how patterns are made and some of the most popular ones.,When a price pattern signals a change in trend direction, it is known as a reversal pattern; a continuation pattern occurs when the trend continues in its existing direction following a brief pause. There are many patterns used by traders—here is how patterns are made and some of the most popular ones",
-                              16,
-                              FontWeight.normal,
-                              Colors.blue,
-                              10,
-                              textAlign: TextAlign.justify),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(width: 20.0,),
-            Expanded(
-              flex: 1,
-              child: Card(
-                elevation: 2.0,
-                surfaceTintColor: Colors.transparent,
-                color: Colors.black87,
-                margin: EdgeInsets.zero,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      const SizedBox(
-                          width: 300, height: 300, child: IncomeOutgoingsChart()),
-                      Expanded(
-                        child: Padding(
-                          padding:
-                          const EdgeInsets.only(top: 50.0, left: 20.0, right: 20.0),
-                          child: customTextView(
-                              "When a price pattern signals a change in trend direction, it is known as a reversal pattern; a continuation pattern occurs when the trend continues in its existing direction following a brief pause. There are many patterns used by traders—here is how patterns are made and some of the most popular ones.,When a price pattern signals a change in trend direction, it is known as a reversal pattern; a continuation pattern occurs when the trend continues in its existing direction following a brief pause. There are many patterns used by traders—here is how patterns are made and some of the most popular ones.,When a price pattern signals a change in trend direction, it is known as a reversal pattern; a continuation pattern occurs when the trend continues in its existing direction following a brief pause. There are many patterns used by traders—here is how patterns are made and some of the most popular ones.,When a price pattern signals a change in trend direction, it is known as a reversal pattern; a continuation pattern occurs when the trend continues in its existing direction following a brief pause. There are many patterns used by traders—here is how patterns are made and some of the most popular ones",
-                              16,
-                              FontWeight.normal,
-                              Colors.blue,
-                              10,
-                              textAlign: TextAlign.justify),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            )
-          ],
-        ),
+          ),
+        )
       ],
     );
   }
