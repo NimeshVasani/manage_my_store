@@ -5,15 +5,30 @@ class SalesAnalysisChart extends StatefulWidget {
   const SalesAnalysisChart({Key? key}) : super(key: key);
 
   @override
-  _SalesAnalysisChartState createState() => _SalesAnalysisChartState();
+  State<SalesAnalysisChart> createState() => _SalesAnalysisChartState();
 }
 
 class _SalesAnalysisChartState extends State<SalesAnalysisChart> {
+
   late int selectedMonth = DateTime.now().month;
   late int selectedYear = DateTime.now().year;
 
   @override
   Widget build(BuildContext context) {
+    final List<Color> color = <Color>[];
+    color.add(Colors.green.shade900);
+    color.add(Colors.orange[300]!);
+    color.add(Colors.orange[200]!);
+    color.add(Colors.orange[50]!);
+
+    final List<double> stops = <double>[];
+    stops.add(0.0);
+    stops.add(0.5);
+    stops.add(0.7);
+    stops.add(1.0);
+    final LinearGradient gradientColors =
+    LinearGradient(colors: color, stops: stops,begin: Alignment.topCenter,end: Alignment.bottomCenter);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
@@ -124,8 +139,11 @@ class _SalesAnalysisChartState extends State<SalesAnalysisChart> {
                 animationDuration: 0,
                 animationDelay: 0,
 
+
               ),
               AreaSeries<TransactionData, String>(
+                gradient: gradientColors,
+
                 dataSource: getSalesData(),
                 xValueMapper: (TransactionData transaction, _) =>
                     transaction.day,

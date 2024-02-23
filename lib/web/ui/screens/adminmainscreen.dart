@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:manage_my_store/web/ui/screens/adminlogin.dart';
@@ -20,11 +22,12 @@ class _AdminMainScreenState extends State<AdminMainScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   int currentScreen = 0;
-
+  var width;
   @override
   void initState() {
     super.initState();
     authViewModel = Provider.of<WebAuthViewModel>(context, listen: false);
+
 
     // Other initialization logic
   }
@@ -36,15 +39,13 @@ class _AdminMainScreenState extends State<AdminMainScreen> {
       const AddItems()
     ];
 
-
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
       body: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Expanded(
           child: SizedBox(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
+            width: PlatformDispatcher.instance.displays.first.size.width,
             child: Column(
               children: [
                 Expanded(
@@ -53,7 +54,7 @@ class _AdminMainScreenState extends State<AdminMainScreen> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       SizedBox(
-                        width: 300,
+                        width: 250,
                         height: double.infinity,
                         child: CustomDrawer(
                           onValueChange: (int selectedIndex) {

@@ -6,9 +6,8 @@ import 'package:manage_my_store/mobile/ui/widgets/loginscreenwidgets/emailTextFi
 import 'package:manage_my_store/mobile/ui/widgets/loginscreenwidgets/passwordTextField.dart';
 import 'package:manage_my_store/model/store.dart';
 import 'package:manage_my_store/viewmodels/firestore/webfirestoreviewmodel.dart';
-import 'package:manage_my_store/web/ui/screens/adminmainscreen.dart';
+import 'package:manage_my_store/web/ui/widgets/admin_registration_widgets/adminnametextfield.dart';
 import 'package:manage_my_store/web/ui/widgets/adminloginwidgets/loginheading.dart';
-import 'package:manage_my_store/web/ui/widgets/adminregistrationwidgets/adminnametextfield.dart';
 import 'package:provider/provider.dart';
 
 import '../../../utils/Resource.dart';

@@ -105,7 +105,12 @@ flutter:
     - assets/images/cheese_deals.png
     - assets/images/summer_deals.png
     - assets/images/vegitables_deals.jpg
+
+    #web images
     - assets/web/web_back.jpg
+    - assets/web/web_back.jpg
+    - assets/web/chart1_img.png
+    - assets/web/chart2_img.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
