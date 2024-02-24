@@ -78,7 +78,7 @@ class _AdminMainScreenState extends State<AdminMainScreen> {
                           children: [
                             customAppbar(),
                             const SizedBox(
-                              height: 20,
+                              height: 10,
                             ),
                             Expanded(
                               child: Padding(

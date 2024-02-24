@@ -50,6 +50,8 @@ dependencies:
   fl_chart: ^0.66.0
   syncfusion_flutter_charts: ^24.2.3+1
   draggable_scrollbar: ^0.1.0
+  auto_size_text: ^3.0.0
+  flutter_rating_bar: ^4.0.1
 
   #firebase dependencies
   cloud_firestore: ^4.14.0

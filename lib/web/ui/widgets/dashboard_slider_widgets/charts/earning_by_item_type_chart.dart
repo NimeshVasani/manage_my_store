@@ -17,6 +17,7 @@ class _EarningByItemTypesChartState extends State<EarningByItemTypesChart> {
       legend: const Legend(
         isVisible: true,
         itemPadding: 5,
+        alignment: ChartAlignment.center,
         position: LegendPosition.right,
         textStyle: TextStyle(fontSize: 14),
       ),
@@ -24,6 +25,7 @@ class _EarningByItemTypesChartState extends State<EarningByItemTypesChart> {
 
       series: <CircularSeries>[
         PieSeries<SalesData, String>(
+
           radius: '100%',
           dataSource: earningData,
           xValueMapper: (SalesData sales, _) => sales.item,

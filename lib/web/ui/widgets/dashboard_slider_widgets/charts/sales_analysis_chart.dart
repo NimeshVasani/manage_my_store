@@ -9,25 +9,30 @@ class SalesAnalysisChart extends StatefulWidget {
 }
 
 class _SalesAnalysisChartState extends State<SalesAnalysisChart> {
-
   late int selectedMonth = DateTime.now().month;
   late int selectedYear = DateTime.now().year;
 
   @override
   Widget build(BuildContext context) {
     final List<Color> color = <Color>[];
-    color.add(Colors.green.shade900);
-    color.add(Colors.orange[300]!);
+    color.add(Colors.orange[100]!);
     color.add(Colors.orange[200]!);
-    color.add(Colors.orange[50]!);
+    color.add(Colors.orange[300]!);
+    color.add(Colors.green.shade700);
+    color.add(Colors.green.shade800);
+    color.add(Colors.green.shade900);
 
     final List<double> stops = <double>[];
     stops.add(0.0);
-    stops.add(0.5);
-    stops.add(0.7);
+    stops.add(0.2);
+    stops.add(0.4);
+    stops.add(0.6);
+    stops.add(0.8);
     stops.add(1.0);
-    final LinearGradient gradientColors =
-    LinearGradient(colors: color, stops: stops,begin: Alignment.topCenter,end: Alignment.bottomCenter);
+    final LinearGradient gradientColors = LinearGradient(
+      colors: color,
+      stops: stops,
+    );
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -90,12 +95,11 @@ class _SalesAnalysisChartState extends State<SalesAnalysisChart> {
               activationMode: ActivationMode.singleTap,
               tooltipSettings: InteractiveTooltip(
                 format:
-                    'Date: point.x/${DateTime(2000, selectedMonth ).month.toString().padLeft(2, '0')} \nSales: \$point.y',
+                    'Date: point.x/${DateTime(2000, selectedMonth).month.toString().padLeft(2, '0')} \nSales: \$point.y',
                 textStyle: const TextStyle(color: Colors.white),
                 color: Colors.blueGrey,
                 borderWidth: 1,
                 borderColor: Colors.white,
-
               ),
             ),
             plotAreaBorderWidth: 0.0,
@@ -106,44 +110,27 @@ class _SalesAnalysisChartState extends State<SalesAnalysisChart> {
               axisLine: AxisLine(width: 1, color: Colors.transparent),
               labelStyle: TextStyle(color: Colors.black87),
             ),
-            primaryYAxis: const NumericAxis(
-
-              title: AxisTitle(
+            primaryYAxis:  NumericAxis(
+              title: const AxisTitle(
                   text: 'Amount', textStyle: TextStyle(color: Colors.black)),
               axisLine: AxisLine(width: 1, color: Colors.transparent),
-              majorGridLines: MajorGridLines(width: 0),
-              majorTickLines: MajorTickLines(size: 0, width: 0),
-              labelStyle: TextStyle(color: Colors.black87),
-              minorGridLines: MinorGridLines(width: 0),
-              minorTickLines: MinorTickLines(size: 0),
+              majorGridLines: MajorGridLines(width: 0.5,color: Colors.grey.shade200),
+              majorTickLines: const MajorTickLines(size: 0, width: 0),
+              labelStyle: const TextStyle(color: Colors.black87),
+              minorGridLines: const MinorGridLines(width: 0),
+              minorTickLines: const MinorTickLines(size: 0),
             ),
-
             series: <CartesianSeries>[
-
-              LineSeries<TransactionData, String>(
-                dataSource: getSalesData(),
-                xValueMapper: (TransactionData transaction, _) =>
-                    transaction.day,
-                yValueMapper: (TransactionData transaction, _) =>
-                    transaction.sales,
-                name: 'Sales Line',
-                markerSettings: const MarkerSettings(
-                  isVisible: true,
-                  shape: DataMarkerType.circle,
-                  width: 8,
-                  height: 8,
-                ),
-                isVisibleInLegend: false,
-                // Hide from legend
-                color: Colors.green.shade300,
-                animationDuration: 0,
-                animationDelay: 0,
-
-
-              ),
-              AreaSeries<TransactionData, String>(
+              SplineAreaSeries<TransactionData, String>(
                 gradient: gradientColors,
-
+                borderWidth: 4,
+                borderGradient: const LinearGradient(colors: <Color>[
+                  Color.fromRGBO(220, 217, 146, 1.0),
+                  Color.fromRGBO(234, 186, 11, 1.0)
+                ], stops: <double>[
+                  0.2,
+                  0.9
+                ]),
                 dataSource: getSalesData(),
                 xValueMapper: (TransactionData transaction, _) =>
                     transaction.day,

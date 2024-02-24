@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:manage_my_store/mobile/ui/widgets/customtext.dart';
-import 'package:manage_my_store/web/ui/widgets/additemswidgets/customcard.dart';
-import 'package:manage_my_store/web/ui/widgets/additemswidgets/productcategories.dart';
+import 'package:manage_my_store/web/ui/widgets/add_items_widgets/customcard.dart';
+import 'package:manage_my_store/web/ui/widgets/add_items_widgets/productcategories.dart';
 
 class AddItems extends StatefulWidget {
   const AddItems({super.key});
@@ -12,6 +11,14 @@ class AddItems extends StatefulWidget {
 }
 
 class _AddItemsState extends State<AddItems> {
+  late String productType;
+
+  @override
+  void initState() {
+    super.initState();
+    productType = productTypeName[0];
+  }
+
   var productTypeImg = [
     'assets/images/deals.png',
     'assets/images/general.png',
@@ -35,19 +42,31 @@ class _AddItemsState extends State<AddItems> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        customCard(ProductCategories(
-          onChanged: (index) {},
-          listImg: productTypeImg,
-          listName: productTypeName,
-        )),
+        CustomCard(
+            selectedType: productType,
+            customChild: ProductCategories(
+              onChanged: (index) {
+                setState(() {
+                  productType = productTypeName[index];
+                });
+              },
+              listImg: productTypeImg,
+              listName: productTypeName,
+            )),
         const SizedBox(
           height: 20,
         ),
-        customCard(ProductCategories(
-          onChanged: (index) {},
-          listImg: productTypeImg,
-          listName: productTypeName,
-        )),
+        CustomCard(
+            selectedType: productType,
+            customChild: ProductCategories(
+              onChanged: (index) {
+                setState(() {
+                  productType = productTypeName[index];
+                });
+              },
+              listImg: productTypeImg,
+              listName: productTypeName,
+            )),
       ],
     );
   }
