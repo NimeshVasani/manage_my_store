@@ -15,8 +15,10 @@ Widget nameTextField(TextEditingController textEditingController) {
       textAlign: TextAlign.start,
       autocorrect: false,
       maxLines: 1,
+
       decoration: const InputDecoration(
           contentPadding: EdgeInsets.symmetric(horizontal: 20),
+          border: OutlineInputBorder(),
           focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(color: Colors.blueAccent, width: 1.5),
               borderRadius: BorderRadius.all(Radius.circular(8.0))),

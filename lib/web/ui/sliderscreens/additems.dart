@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:manage_my_store/web/ui/widgets/add_items_widgets/customcard.dart';
+import 'package:manage_my_store/web/ui/widgets/add_items_widgets/product_details.dart';
 import 'package:manage_my_store/web/ui/widgets/add_items_widgets/productcategories.dart';
 
 class AddItems extends StatefulWidget {
@@ -52,21 +53,21 @@ class _AddItemsState extends State<AddItems> {
               },
               listImg: productTypeImg,
               listName: productTypeName,
-            )),
+            ),
+          isBtn: true,
+          name: "Product Type : ",
+        ),
         const SizedBox(
           height: 20,
         ),
         CustomCard(
-            selectedType: productType,
-            customChild: ProductCategories(
-              onChanged: (index) {
-                setState(() {
-                  productType = productTypeName[index];
-                });
-              },
-              listImg: productTypeImg,
-              listName: productTypeName,
-            )),
+            selectedType: "",
+            customChild: ProductDetails(
+
+            ),
+          isBtn: false,
+          name: "Product Details",
+        ),
       ],
     );
   }

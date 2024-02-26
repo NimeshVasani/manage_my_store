@@ -4,9 +4,15 @@ import '../../../../mobile/ui/widgets/customtext.dart';
 
 class CustomCard extends StatefulWidget {
   final Widget customChild;
+  final String name;
   final String selectedType;
+  final bool isBtn;
 
-  const CustomCard({super.key, required this.customChild, required this.selectedType});
+  const CustomCard(
+      {super.key,
+      required this.customChild,
+      required this.selectedType,
+      required this.isBtn, required this.name});
 
   @override
   State<CustomCard> createState() => _CustomCardState();
@@ -30,14 +36,16 @@ class _CustomCardState extends State<CustomCard> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 customTextView(
-                    "Product Type : ", 18, FontWeight.w500, Colors.black, 1),
-                customTextView(
-                    widget.selectedType, 14, FontWeight.w500, Colors.black38, 1),
+                    widget.name, 18, FontWeight.w500, Colors.black, 1),
+                customTextView(widget.selectedType, 14, FontWeight.w500,
+                    Colors.black38, 1),
                 const Spacer(),
-                InkWell(
-                  child: customTextView("+ Add category", 18, FontWeight.w500,
-                      Colors.blue.shade900, 1),
-                ),
+                widget.isBtn
+                    ? InkWell(
+                        child: customTextView("+ Add category", 18,
+                            FontWeight.w500, Colors.blue.shade900, 1),
+                      )
+                    : Container(),
               ],
             ),
           ),
