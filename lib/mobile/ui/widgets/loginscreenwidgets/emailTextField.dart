@@ -15,7 +15,7 @@ Widget emailTextField(TextEditingController textEditingController) {
       autocorrect: false,
       maxLines: 1,
       decoration: const InputDecoration(
-          border: InputBorder.none,
+          border: OutlineInputBorder(borderSide: BorderSide.none),
           contentPadding: EdgeInsets.symmetric(horizontal: 20),
           focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(color: Colors.blueAccent, width: 1.5),

@@ -4,7 +4,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class PasswordTextField extends StatefulWidget {
   final TextEditingController textEditingController;
 
-  const PasswordTextField({super.key, required this.textEditingController});
+
+  const PasswordTextField({super.key, required this.textEditingController, });
 
   @override
   State<PasswordTextField> createState() => _PasswordTextFieldState();
@@ -31,7 +32,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
         maxLines: 1,
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
-          border: InputBorder.none,
+          border: const OutlineInputBorder(borderSide: BorderSide.none),
           contentPadding: const EdgeInsets.symmetric(horizontal: 20),
           focusedBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Colors.blueAccent, width: 1.5),

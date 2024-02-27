@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swipe_button/flutter_swipe_button.dart';
 import 'package:manage_my_store/web/ui/widgets/add_items_widgets/customcard.dart';
+import 'package:manage_my_store/web/ui/widgets/add_items_widgets/image_chooser.dart';
 import 'package:manage_my_store/web/ui/widgets/add_items_widgets/product_desc.dart';
 import 'package:manage_my_store/web/ui/widgets/add_items_widgets/product_details.dart';
 import 'package:manage_my_store/web/ui/widgets/add_items_widgets/productcategories.dart';
@@ -72,11 +72,20 @@ class _AddItemsState extends State<AddItems> {
           height: 20,
         ),
         const CustomCard(
+            customChild: ImageChooser(),
+            selectedType: "",
+            isBtn: false,
+            name: "Choose Image"),
+        const SizedBox(
+          height: 20,
+        ),
+        const CustomCard(
           selectedType: "",
           customChild: ProductDescription(),
           isBtn: false,
-          name: "Product Details",
+          name: "Optional Info",
         ),
+
         Padding(
           padding: const EdgeInsets.only(top: 50),
           child: SwipeButton.expand(
@@ -119,7 +128,9 @@ class _AddItemsState extends State<AddItems> {
                 )),
           ),
         ),
-        const SizedBox(height: 100,)
+        const SizedBox(
+          height: 100,
+        )
       ],
     );
   }

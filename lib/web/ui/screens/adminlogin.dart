@@ -26,7 +26,6 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
   late WebFireStoreViewModel fireStoreViewModel;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
   @override
   void initState() {
     super.initState();
@@ -35,7 +34,6 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
         Provider.of<WebFireStoreViewModel>(context, listen: false);
     // Other initialization logic
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,64 +73,14 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
                             ),
                             emailTextField(emailController),
                             PasswordTextField(
-                                textEditingController: passwordController),
+                                textEditingController: passwordController,),
                             Container(
                               width: double.infinity,
                               padding: const EdgeInsets.only(
                                   bottom: 10, left: 30, right: 30.0),
                               child: ElevatedButton(
-                                  onPressed: () async {
-                                    final loginStatus =
-                                        await authViewModel.loginAdmin(
-                                            emailController.text,
-                                            passwordController.text);
-                                    switch (loginStatus.runtimeType) {
-                                      case const (Success<User>):
-                                        {
-                                          final adminStatus =
-                                              await fireStoreViewModel
-                                                  .checkUserOrAdmin(
-                                                      loginStatus.data!.uid);
-                                          switch (adminStatus.runtimeType) {
-                                            case const (Success<String>):
-                                              {
-                                                if (!mounted) return;
-                                                Navigator.of(context)
-                                                    .pushReplacement(
-                                                        CupertinoPageRoute(
-                                                            builder: (context) {
-                                                  return const AdminMainScreen();
-                                                }));
-                                                break;
-                                              }
-                                            default:
-                                              {
-                                                authViewModel.signOut();
-                                                ScaffoldMessenger.of(context)
-                                                    .showSnackBar(SnackBar(
-                                                  content: Text(
-                                                    loginStatus.message
-                                                        .toString(),
-                                                    style: const TextStyle(
-                                                        color: Colors.white54),
-                                                  ),
-                                                ));
-                                              }
-                                          }
-                                        }
-
-                                      default:
-                                        {
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(SnackBar(
-                                            content: Text(
-                                              loginStatus.message.toString(),
-                                              style: const TextStyle(
-                                                  color: Colors.white54),
-                                            ),
-                                          ));
-                                        }
-                                    }
+                                  onPressed: () {
+                                    adminLogin();
                                   },
                                   style: const ButtonStyle(
                                     backgroundColor:
@@ -180,4 +128,59 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
       ),
     );
   }
+
+  adminLogin() async {
+    final loginStatus =
+    await authViewModel.loginAdmin(
+        emailController.text,
+        passwordController.text);
+    switch (loginStatus.runtimeType) {
+      case const (Success<User>):
+        {
+          final adminStatus =
+          await fireStoreViewModel
+              .checkUserOrAdmin(
+              loginStatus.data!.uid);
+          switch (adminStatus.runtimeType) {
+            case const (Success<String>):
+              {
+                if (!mounted) return;
+                Navigator.of(context)
+                    .pushReplacement(
+                    CupertinoPageRoute(
+                        builder: (context) {
+                          return const AdminMainScreen();
+                        }));
+                break;
+              }
+            default:
+              {
+                authViewModel.signOut();
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(SnackBar(
+                  content: Text(
+                    loginStatus.message
+                        .toString(),
+                    style: const TextStyle(
+                        color: Colors.white54),
+                  ),
+                ));
+              }
+          }
+        }
+
+      default:
+        {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(
+            content: Text(
+              loginStatus.message.toString(),
+              style: const TextStyle(
+                  color: Colors.white54),
+            ),
+          ));
+        }
+    }
+  }
 }
+
