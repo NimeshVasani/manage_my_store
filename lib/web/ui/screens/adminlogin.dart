@@ -73,7 +73,6 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
                             ),
                             emailTextField(emailController),
                             PasswordTextField(
-
                                 textEditingController: passwordController,),
                             Container(
                               width: double.infinity,
