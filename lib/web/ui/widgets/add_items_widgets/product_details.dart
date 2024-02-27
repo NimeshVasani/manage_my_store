@@ -68,7 +68,8 @@ class _ProductDetailsState extends State<ProductDetails> {
                       textInputType: TextInputType.phone,
                       iconData: null)),
             ],
-          )
+          ),
+
         ],
       ),
     );

@@ -9,6 +9,8 @@ class InputTextField extends StatefulWidget {
   final String name;
   final List<TextInputFormatter> textInputFormatter;
   final TextInputType textInputType;
+  final int maxLines;
+  final TextInputAction textInputAction;
 
   const InputTextField(
       {super.key,
@@ -16,7 +18,9 @@ class InputTextField extends StatefulWidget {
       required this.hint,
       this.iconData,
       required this.name,
-      required this.textInputType,  required this.textInputFormatter});
+      required this.textInputType,
+      required this.textInputFormatter,
+      this.maxLines = 1,  this.textInputAction= TextInputAction.next});
 
   @override
   State<InputTextField> createState() => _InputTextFieldState();
@@ -37,20 +41,25 @@ class _InputTextFieldState extends State<InputTextField> {
           controller: widget.textEditingController,
           textAlignVertical: TextAlignVertical.center,
           keyboardType: widget.textInputType,
-          inputFormatters:widget.textInputFormatter,
-          textInputAction: TextInputAction.next,
+          inputFormatters: widget.textInputFormatter,
+          textInputAction: widget.textInputAction,
           textAlign: TextAlign.start,
           autocorrect: false,
-          maxLines: 1,
+          maxLines: widget.maxLines,
+
           decoration: InputDecoration(
-              contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+              contentPadding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
               border: const OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(8.0))),
               focusedBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.blueAccent, width: 1.5),
                   borderRadius: BorderRadius.all(Radius.circular(8.0))),
               hintText: widget.hint,
-              prefixIcon: Icon(widget.iconData)),
+
+              prefixIcon: widget.iconData!=null? Padding(
+                padding: const EdgeInsets.only(bottom: 100.0),
+                child: Icon(widget.iconData,),
+              ):Icon(widget.iconData,)),
         ),
       ],
     );
