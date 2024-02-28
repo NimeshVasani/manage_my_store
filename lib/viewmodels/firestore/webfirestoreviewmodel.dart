@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:manage_my_store/model/store.dart';
+import 'package:manage_my_store/model/web/store.dart';
 import '../../repositories/firestore/webfirestorerepository.dart';
 import '../../utils/Resource.dart';
 

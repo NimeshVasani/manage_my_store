@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:manage_my_store/model/store.dart';
+import 'package:manage_my_store/model/web/store.dart';
 import 'package:manage_my_store/utils/Resource.dart';
 
 class WebFireStoreRepository {

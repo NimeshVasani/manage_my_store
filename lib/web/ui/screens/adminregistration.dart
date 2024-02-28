@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:manage_my_store/mobile/ui/screens/loginscreen.dart';
 import 'package:manage_my_store/mobile/ui/widgets/loginscreenwidgets/emailTextField.dart';
 import 'package:manage_my_store/mobile/ui/widgets/loginscreenwidgets/passwordTextField.dart';
-import 'package:manage_my_store/model/store.dart';
+import 'package:manage_my_store/model/web/store.dart';
+import 'package:manage_my_store/model/web/store_owner.dart';
 import 'package:manage_my_store/viewmodels/firestore/webfirestoreviewmodel.dart';
 import 'package:manage_my_store/web/ui/widgets/admin_registration_widgets/adminnametextfield.dart';
 import 'package:manage_my_store/web/ui/widgets/adminloginwidgets/loginheading.dart';
@@ -112,9 +113,12 @@ class _AdminRegistrationState extends State<AdminRegistration> {
                                               await fireStoreViewModel
                                                   .addStoreIntoStoreList(
                                                       FirebaseStore(
-                                                          nameController.text,
-                                                          emailController.text,
-                                                          '',
+                                                          FirebaseStoreOwner(
+                                                            nameController.text,
+                                                            emailController
+                                                                .text,
+                                                            '',
+                                                          ),
                                                           storeNameController
                                                               .text,
                                                           storeLocationController

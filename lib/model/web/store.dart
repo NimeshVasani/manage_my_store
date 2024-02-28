@@ -1,25 +1,23 @@
+import 'package:manage_my_store/model/web/store_owner.dart';
+
 class FirebaseStore {
-  final String name;
-  final String email;
-  final String phoneNum;
+  final FirebaseStoreOwner storeOwner;
   final String storeName;
   final String storeAddress;
 
   FirebaseStore(
-      this.name, this.email, this.phoneNum, this.storeName, this.storeAddress);
+      this.storeOwner, this.storeName, this.storeAddress);
 
   FirebaseStore.fromJson(Map<String?, dynamic> json)
-      : name = json['name'] as String,
-        email = json['email'] as String,
-        phoneNum = json['phoneNum'] as String,
+      : storeOwner = json['storeOwner'] as FirebaseStoreOwner,
         storeName = json['storeName'] as String,
         storeAddress = json['storeAddress'] as String;
 
   Map<String, dynamic> toJson() => {
-        'name': name,
-        'email': email,
-        'phoneNum': phoneNum,
+        'storeOwner': storeOwner,
         'storeName': storeName,
         'storeAddress': storeAddress
       };
+
+
 }
