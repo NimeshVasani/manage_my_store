@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:manage_my_store/mobile/ui/screens/loginscreen.dart';
 import 'package:manage_my_store/mobile/ui/widgets/loginscreenwidgets/emailTextField.dart';
 import 'package:manage_my_store/mobile/ui/widgets/loginscreenwidgets/passwordTextField.dart';
+import 'package:manage_my_store/model/web/item.dart';
 import 'package:manage_my_store/model/web/store.dart';
 import 'package:manage_my_store/model/web/store_owner.dart';
 import 'package:manage_my_store/viewmodels/firestore/webfirestoreviewmodel.dart';
+import 'package:manage_my_store/web/ui/screens/adminlogin.dart';
 import 'package:manage_my_store/web/ui/widgets/admin_registration_widgets/adminnametextfield.dart';
 import 'package:manage_my_store/web/ui/widgets/adminloginwidgets/loginheading.dart';
 import 'package:provider/provider.dart';
@@ -101,12 +103,12 @@ class _AdminRegistrationState extends State<AdminRegistration> {
                                   bottom: 10, left: 30, right: 30.0),
                               child: ElevatedButton(
                                   onPressed: () async {
-                                    final loginStatus =
+                                    final registrationStatus =
                                         await authViewModel.registerAdmin(
                                             nameController.text,
                                             emailController.text,
                                             passwordController1.text);
-                                    switch (loginStatus.runtimeType) {
+                                    switch (registrationStatus.runtimeType) {
                                       case const (Success<User?>):
                                         {
                                           final storeStatus =
@@ -122,7 +124,7 @@ class _AdminRegistrationState extends State<AdminRegistration> {
                                                           storeNameController
                                                               .text,
                                                           storeLocationController
-                                                              .text));
+                                                              .text,[]));
 
                                           switch (storeStatus.runtimeType) {
                                             case const (Success<bool>):
@@ -132,7 +134,7 @@ class _AdminRegistrationState extends State<AdminRegistration> {
                                                     .pushReplacement(
                                                         CupertinoPageRoute(
                                                             builder: (context) {
-                                                  return const LoginScreen();
+                                                  return const AdminLoginScreen();
                                                 }));
                                                 break;
                                               }
@@ -141,7 +143,7 @@ class _AdminRegistrationState extends State<AdminRegistration> {
                                                 ScaffoldMessenger.of(context)
                                                     .showSnackBar(SnackBar(
                                                   content: Text(
-                                                    loginStatus.message
+                                                    registrationStatus.message
                                                         .toString(),
                                                     style: const TextStyle(
                                                         color: Colors.white54),
@@ -155,7 +157,8 @@ class _AdminRegistrationState extends State<AdminRegistration> {
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(SnackBar(
                                             content: Text(
-                                              loginStatus.message.toString(),
+                                              registrationStatus.message
+                                                  .toString(),
                                               style: const TextStyle(
                                                   color: Colors.white54),
                                             ),

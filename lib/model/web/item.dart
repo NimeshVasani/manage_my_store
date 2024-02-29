@@ -1,25 +1,35 @@
 class FirebaseItem {
-  final String name;
   final String category;
-  final double price;
+  final String productName;
+  final String brandName;
   final String unit;
+  final double quantity;
+  final double price;
+  final double discount;
   final String description;
 
-  FirebaseItem(
-      this.name, this.category, this.price, this.unit, this.description);
+
+  FirebaseItem(this.category, this.productName, this.brandName, this.unit,
+      this.quantity, this.price, this.discount, this.description);
 
   FirebaseItem.fromJson(Map<String?, dynamic> json)
-      : name = json['name'] as String,
-        category = json['category'] as String,
-        price = json['price'] as double,
+      : category = json['category'] as String,
+        productName = json['productName'] as String,
+        brandName = json['brandName'] as String,
         unit = json['unit'] as String,
+        quantity = json['quantity'] as double,
+        price = json['price'] as double,
+        discount = json['discount'] as double,
         description = json['description'] as String;
 
   Map<String, dynamic> toJson() => {
-        'name': name,
         'category': category,
-        'price': price,
+        'productName': productName,
+        'brandName': brandName,
         'unit': unit,
+        'quantity': quantity,
+        'price': price,
+        'discount': discount,
         'description': description
       };
 }

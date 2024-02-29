@@ -18,7 +18,9 @@ class ProductDescription extends StatelessWidget {
           textInputFormatter: [],
           maxLines: 5,
           textInputAction: TextInputAction.newline,
-          iconData: Icons.description
+          iconData: Icons.description,
+        onChanged: (data){
+        },
       ) ,
     );
   }

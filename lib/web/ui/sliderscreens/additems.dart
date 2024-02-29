@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swipe_button/flutter_swipe_button.dart';
+import 'package:manage_my_store/model/web/item.dart';
 import 'package:manage_my_store/web/ui/widgets/add_items_widgets/customcard.dart';
 import 'package:manage_my_store/web/ui/widgets/add_items_widgets/image_chooser.dart';
 import 'package:manage_my_store/web/ui/widgets/add_items_widgets/product_desc.dart';
 import 'package:manage_my_store/web/ui/widgets/add_items_widgets/product_details.dart';
 import 'package:manage_my_store/web/ui/widgets/add_items_widgets/productcategories.dart';
+import 'package:provider/provider.dart';
+
+import '../../../utils/Resource.dart';
+import '../../../viewmodels/firestore/webfirestoreviewmodel.dart';
 
 class AddItems extends StatefulWidget {
   const AddItems({super.key});
@@ -14,11 +19,22 @@ class AddItems extends StatefulWidget {
 }
 
 class _AddItemsState extends State<AddItems> {
+  late WebFireStoreViewModel fireStoreViewModel;
   late String productType;
+  late FirebaseItem firebaseItem;
+  late String productName;
+  late String brandName;
+  late String unit;
+  late String quantity;
+  late String price;
+  late String discount;
+  late String desc;
 
   @override
   void initState() {
     super.initState();
+    fireStoreViewModel =
+        Provider.of<WebFireStoreViewModel>(context, listen: false);
     productType = productTypeName[0];
   }
 
@@ -62,9 +78,36 @@ class _AddItemsState extends State<AddItems> {
         const SizedBox(
           height: 20,
         ),
-        const CustomCard(
+        CustomCard(
           selectedType: "",
-          customChild: ProductDetails(),
+          customChild: ProductDetails(
+            productName: (productName) {
+              setState(() {
+                this.productName = productName;
+              });
+            },
+            brandName: (brandName) {
+              setState(() {
+                this.brandName = brandName;
+              });
+            },
+            unit: (unit) {
+              setState(() {
+                this.unit = unit;
+              });
+            },
+            quantity: (quantity) {
+              setState(() {
+                this.quantity = quantity;
+              });
+            },
+            price: (String price) {
+              this.price = price;
+            },
+            discount: (String discount) {
+              this.discount = discount;
+            },
+          ),
           isBtn: false,
           name: "Product Details",
         ),
@@ -85,7 +128,6 @@ class _AddItemsState extends State<AddItems> {
           isBtn: false,
           name: "Optional Info",
         ),
-
         Padding(
           padding: const EdgeInsets.only(top: 50),
           child: SwipeButton.expand(
@@ -98,13 +140,16 @@ class _AddItemsState extends State<AddItems> {
             ),
             activeThumbColor: Colors.green,
             activeTrackColor: Colors.green.shade200,
-            onSwipe: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text("Product Added"),
-                  backgroundColor: Colors.green,
-                ),
-              );
+            onSwipe: () async {
+              addItemsIntoFireStore(FirebaseItem(
+                  productType,
+                  productName,
+                  brandName,
+                  unit,
+                  double.parse(quantity),
+                  double.parse(price),
+                  double.parse(discount),
+                  ''));
             },
             child: const Text(
               "Add to store",
@@ -133,5 +178,34 @@ class _AddItemsState extends State<AddItems> {
         )
       ],
     );
+  }
+
+  void addItemsIntoFireStore(FirebaseItem firebaseItem) async {
+    var addingStatus =
+        await fireStoreViewModel.addItemIntoFireStore(firebaseItem);
+    switch (addingStatus.runtimeType) {
+      case const (Success<FirebaseItem>):
+        {
+          if (!mounted) return;
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            backgroundColor: Colors.green,
+            content: Text(
+              "${addingStatus.data!.productName} added into Store",
+              style: const TextStyle(color: Colors.white54),
+            ),
+          ));
+          break;
+        }
+      default:
+        {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            backgroundColor: Colors.red,
+            content: Text(
+              addingStatus.message.toString(),
+              style: const TextStyle(color: Colors.white54),
+            ),
+          ));
+        }
+    }
   }
 }

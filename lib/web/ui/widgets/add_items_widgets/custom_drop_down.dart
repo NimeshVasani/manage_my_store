@@ -5,8 +5,9 @@ import '../../../../mobile/ui/widgets/customtext.dart';
 
 class CustomDropDown extends StatefulWidget {
   final String name;
+  final ValueChanged<String> selectedUnit;
 
-  const CustomDropDown({super.key, required this.name});
+  const CustomDropDown({super.key, required this.name, required this.selectedUnit});
 
   @override
   State<CustomDropDown> createState() => _CustomDropDownState();
@@ -51,6 +52,7 @@ class _CustomDropDownState extends State<CustomDropDown> {
               onChanged: (String? newValue) {
                 setState(() {
                   selectedInterval = newValue!;
+                  widget.selectedUnit(newValue);
                 });
               },
             ),

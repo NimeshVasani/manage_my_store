@@ -11,6 +11,7 @@ class InputTextField extends StatefulWidget {
   final TextInputType textInputType;
   final int maxLines;
   final TextInputAction textInputAction;
+  final ValueChanged<String> onChanged;
 
   const InputTextField(
       {super.key,
@@ -20,7 +21,7 @@ class InputTextField extends StatefulWidget {
       required this.name,
       required this.textInputType,
       required this.textInputFormatter,
-      this.maxLines = 1,  this.textInputAction= TextInputAction.next});
+      this.maxLines = 1,  this.textInputAction= TextInputAction.next, required this.onChanged});
 
   @override
   State<InputTextField> createState() => _InputTextFieldState();
@@ -46,7 +47,9 @@ class _InputTextFieldState extends State<InputTextField> {
           textAlign: TextAlign.start,
           autocorrect: false,
           maxLines: widget.maxLines,
-
+          onChanged: (data){
+            widget.onChanged(data);
+          },
           decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
               border: const OutlineInputBorder(

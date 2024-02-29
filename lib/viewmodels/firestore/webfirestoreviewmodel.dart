@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:manage_my_store/model/web/item.dart';
 import 'package:manage_my_store/model/web/store.dart';
 import '../../repositories/firestore/webfirestorerepository.dart';
 import '../../utils/Resource.dart';
@@ -12,5 +13,9 @@ class WebFireStoreViewModel with ChangeNotifier {
 
   Future<Resources<String>> checkUserOrAdmin(String userID) async {
     return await _fireStoreRepository.checkUserOrAdmin(userID);
+  }
+
+  Future<Resources<FirebaseItem>> addItemIntoFireStore(FirebaseItem item) async {
+    return await _fireStoreRepository.addItemIntoFireStore(item);
   }
 }
