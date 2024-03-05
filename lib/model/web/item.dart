@@ -8,7 +8,6 @@ class FirebaseItem {
   final double discount;
   final String description;
 
-
   FirebaseItem(this.category, this.productName, this.brandName, this.unit,
       this.quantity, this.price, this.discount, this.description);
 

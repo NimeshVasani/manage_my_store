@@ -82,24 +82,16 @@ class _AddItemsState extends State<AddItems> {
           selectedType: "",
           customChild: ProductDetails(
             productName: (productName) {
-              setState(() {
-                this.productName = productName;
-              });
+              this.productName = productName;
             },
             brandName: (brandName) {
-              setState(() {
-                this.brandName = brandName;
-              });
+              this.brandName = brandName;
             },
             unit: (unit) {
-              setState(() {
-                this.unit = unit;
-              });
+              this.unit = unit;
             },
             quantity: (quantity) {
-              setState(() {
-                this.quantity = quantity;
-              });
+              this.quantity = quantity;
             },
             price: (String price) {
               this.price = price;
