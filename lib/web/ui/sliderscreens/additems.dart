@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_swipe_button/flutter_swipe_button.dart';
 import 'package:manage_my_store/model/web/item.dart';
+import 'package:manage_my_store/viewmodels/storage/web_storage_view_model.dart';
 import 'package:manage_my_store/web/ui/widgets/add_items_widgets/customcard.dart';
 import 'package:manage_my_store/web/ui/widgets/add_items_widgets/image_chooser.dart';
 import 'package:manage_my_store/web/ui/widgets/add_items_widgets/product_desc.dart';
@@ -20,6 +23,7 @@ class AddItems extends StatefulWidget {
 
 class _AddItemsState extends State<AddItems> {
   late WebFireStoreViewModel fireStoreViewModel;
+  late WebStorageViewModel storageViewModel;
   late String productType;
   late FirebaseItem firebaseItem;
   late String productName;
@@ -28,6 +32,7 @@ class _AddItemsState extends State<AddItems> {
   late String quantity;
   late String price;
   late String discount;
+  late String imagePath;
   late String desc;
 
   @override
@@ -35,6 +40,7 @@ class _AddItemsState extends State<AddItems> {
     super.initState();
     fireStoreViewModel =
         Provider.of<WebFireStoreViewModel>(context, listen: false);
+    storageViewModel = Provider.of<WebStorageViewModel>(context, listen: false);
     productType = productTypeName[0];
   }
 
@@ -106,8 +112,12 @@ class _AddItemsState extends State<AddItems> {
         const SizedBox(
           height: 20,
         ),
-        const CustomCard(
-            customChild: ImageChooser(),
+        CustomCard(
+            customChild: ImageChooser(
+              imagePath: (path) {
+                imagePath = path;
+              },
+            ),
             selectedType: "",
             isBtn: false,
             name: "Choose Image"),
@@ -133,15 +143,14 @@ class _AddItemsState extends State<AddItems> {
             activeThumbColor: Colors.green,
             activeTrackColor: Colors.green.shade200,
             onSwipe: () async {
-              addItemsIntoFireStore(FirebaseItem(
-                  productType,
-                  productName,
-                  brandName,
-                  unit,
-                  double.parse(quantity),
-                  double.parse(price),
-                  double.parse(discount),
-                  ''));
+              saveImage(imagePath);
+              // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              //   backgroundColor: Colors.red,
+              //   content: Text(
+              //     image,
+              //     style: const TextStyle(color: Colors.white54),
+              //   ),
+              // ));
             },
             child: const Text(
               "Add to store",
@@ -194,6 +203,37 @@ class _AddItemsState extends State<AddItems> {
             backgroundColor: Colors.red,
             content: Text(
               addingStatus.message.toString(),
+              style: const TextStyle(color: Colors.white54),
+            ),
+          ));
+        }
+    }
+  }
+
+  void saveImage(String imagePath) async {
+    var savingStatus = await storageViewModel.saveImage(imagePath);
+    switch (savingStatus.runtimeType) {
+      case const (Success<String>):
+        {
+          if (!mounted) return;
+          addItemsIntoFireStore(FirebaseItem(
+              productType,
+              productName,
+              brandName,
+              unit,
+              double.parse(quantity),
+              double.parse(price),
+              double.parse(discount),
+              savingStatus.data.toString(),
+              ''));
+          break;
+        }
+      default:
+        {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            backgroundColor: Colors.red,
+            content: Text(
+              savingStatus.message.toString(),
               style: const TextStyle(color: Colors.white54),
             ),
           ));

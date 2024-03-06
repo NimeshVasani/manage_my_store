@@ -6,6 +6,7 @@ import 'package:manage_my_store/viewmodels/authentication/mobileauthviewmodel.da
 import 'package:manage_my_store/viewmodels/authentication/webauthviewmodel.dart';
 import 'package:manage_my_store/viewmodels/firestore/mobilefirestoreviewmodel.dart';
 import 'package:manage_my_store/viewmodels/firestore/webfirestoreviewmodel.dart';
+import 'package:manage_my_store/viewmodels/storage/web_storage_view_model.dart';
 import 'package:manage_my_store/web/ui/screens/adminlogin.dart';
 import 'package:manage_my_store/web/ui/screens/adminmainscreen.dart';
 import 'package:provider/provider.dart';
@@ -24,6 +25,7 @@ void main() async {
   runApp(
     MultiProvider(
       providers: [
+        //Mobile change notifier
         ChangeNotifierProvider(
           create: (context) => MobileAuthViewModel(),
         ),
@@ -37,6 +39,9 @@ void main() async {
         ),
         ChangeNotifierProvider(
           create: (context) => WebFireStoreViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => WebStorageViewModel(),
         ),
       ],
       child: !kIsWeb ? const MyApp() : const MyWebApp(),

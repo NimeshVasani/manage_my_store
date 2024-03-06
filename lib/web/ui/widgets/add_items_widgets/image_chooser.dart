@@ -1,8 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker_web/image_picker_web.dart';
 
 class ImageChooser extends StatefulWidget {
-  const ImageChooser({Key? key}) : super(key: key);
+  final ValueChanged<String> imagePath;
+
+  const ImageChooser({Key? key, required this.imagePath}) : super(key: key);
 
   @override
   State<ImageChooser> createState() => _ImageChooserState();
@@ -20,12 +24,15 @@ class _ImageChooserState extends State<ImageChooser> {
   ];
 
   Future<void> _openImagePicker() async {
-    final pickedFile = await ImagePickerWeb.getImageAsWidget();
+    final pickedFile = await ImagePickerWeb.getImageAsBytes();
 
     if (pickedFile != null) {
+      String base64Image = base64Encode(pickedFile);
+
       setState(() {
         // Reset selected image from the sample images
         selectedImageIndex = -1;
+        widget.imagePath(base64Image);
       });
     }
   }
@@ -69,7 +76,10 @@ class _ImageChooserState extends State<ImageChooser> {
         ),
         const Padding(
           padding: EdgeInsets.all(8.0),
-          child: Text("OR",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 16),),
+          child: Text(
+            "OR",
+            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+          ),
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
