@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../widgets/searchscreenwidgets/appbar.dart';
-import '../widgets/shopscreenwidgets/customgrid.dart';
+import '../widgets/searchscreenwidgets/app_bar.dart';
+import '../widgets/shopscreenwidgets/custom_grid.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});

@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:manage_my_store/mobile/ui/screens/loginoptionscreen.dart';
-import 'package:manage_my_store/mobile/ui/widgets/customtext.dart';
+import 'package:manage_my_store/mobile/ui/screens/login_option_screen.dart';
+import 'package:manage_my_store/mobile/ui/widgets/custom_text.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../viewmodels/authentication/mobileauthviewmodel.dart';
+import '../../../../viewmodels/authentication/mobile_auth_view_model.dart';
 
 class SettingList extends StatefulWidget {
   const SettingList({super.key});
