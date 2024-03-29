@@ -1,7 +1,6 @@
-import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 
-import 'customsearchbar.dart';
+import 'custom_search_bar.dart';
 
 SliverAppBar appBar() {
   return SliverAppBar(

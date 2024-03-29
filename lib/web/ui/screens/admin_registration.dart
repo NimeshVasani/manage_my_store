@@ -1,21 +1,18 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:manage_my_store/mobile/ui/screens/loginscreen.dart';
-import 'package:manage_my_store/mobile/ui/widgets/loginscreenwidgets/emailTextField.dart';
-import 'package:manage_my_store/mobile/ui/widgets/loginscreenwidgets/passwordTextField.dart';
-import 'package:manage_my_store/model/web/item.dart';
+import 'package:manage_my_store/mobile/ui/widgets/loginscreenwidgets/email_text_field.dart';
+import 'package:manage_my_store/mobile/ui/widgets/loginscreenwidgets/password_text_field.dart';
 import 'package:manage_my_store/model/web/store.dart';
 import 'package:manage_my_store/model/web/store_owner.dart';
-import 'package:manage_my_store/viewmodels/firestore/webfirestoreviewmodel.dart';
-import 'package:manage_my_store/web/ui/screens/adminlogin.dart';
-import 'package:manage_my_store/web/ui/widgets/admin_registration_widgets/adminnametextfield.dart';
-import 'package:manage_my_store/web/ui/widgets/adminloginwidgets/loginheading.dart';
+import 'package:manage_my_store/viewmodels/firestore/web_fire_store_view_model.dart';
+import 'package:manage_my_store/web/ui/screens/admin_login.dart';
+import 'package:manage_my_store/web/ui/widgets/admin_registration_widgets/admin_name_text_field.dart';
 import 'package:provider/provider.dart';
-
 import '../../../utils/Resource.dart';
-import '../../../viewmodels/authentication/webauthviewmodel.dart';
-import '../widgets/adminloginwidgets/loginappbar.dart';
+import '../../../viewmodels/authentication/web_auth_view_model.dart';
+import '../widgets/admin_login_widgets/login_app_bar.dart';
+import '../widgets/admin_login_widgets/login_heading.dart';
 
 class AdminRegistration extends StatefulWidget {
   const AdminRegistration({super.key});
@@ -124,7 +121,8 @@ class _AdminRegistrationState extends State<AdminRegistration> {
                                                           storeNameController
                                                               .text,
                                                           storeLocationController
-                                                              .text,[]));
+                                                              .text,
+                                                          []));
 
                                           switch (storeStatus.runtimeType) {
                                             case const (Success<bool>):
