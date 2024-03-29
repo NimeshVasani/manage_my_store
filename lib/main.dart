@@ -2,18 +2,17 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:manage_my_store/viewmodels/authentication/mobileauthviewmodel.dart';
-import 'package:manage_my_store/viewmodels/authentication/webauthviewmodel.dart';
-import 'package:manage_my_store/viewmodels/firestore/mobilefirestoreviewmodel.dart';
-import 'package:manage_my_store/viewmodels/firestore/webfirestoreviewmodel.dart';
+import 'package:manage_my_store/viewmodels/authentication/mobile_auth_view_model.dart';
+import 'package:manage_my_store/viewmodels/authentication/web_auth_view_model.dart';
+import 'package:manage_my_store/viewmodels/firestore/mobile_firestore_view_model.dart';
+import 'package:manage_my_store/viewmodels/firestore/web_fire_store_view_model.dart';
 import 'package:manage_my_store/viewmodels/storage/web_storage_view_model.dart';
-import 'package:manage_my_store/web/ui/screens/adminlogin.dart';
-import 'package:manage_my_store/web/ui/screens/adminmainscreen.dart';
+import 'package:manage_my_store/web/ui/screens/admin_login.dart';
+import 'package:manage_my_store/web/ui/screens/admin_main_screen.dart';
 import 'package:provider/provider.dart';
-
 import 'firebase_options.dart';
-import 'mobile/ui/screens/loginoptionscreen.dart';
-import 'mobile/ui/screens/mainscreen.dart';
+import 'mobile/ui/screens/login_option_screen.dart';
+import 'mobile/ui/screens/main_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding

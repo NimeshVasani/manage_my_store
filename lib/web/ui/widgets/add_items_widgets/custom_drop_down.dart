@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../mobile/ui/widgets/customtext.dart';
+import '../../../../mobile/ui/widgets/custom_text.dart';
 
 class CustomDropDown extends StatefulWidget {
   final String name;

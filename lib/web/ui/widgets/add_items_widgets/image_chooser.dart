@@ -1,7 +1,8 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker_web/image_picker_web.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ImageChooser extends StatefulWidget {
   final ValueChanged<String> imagePath;
@@ -14,7 +15,7 @@ class ImageChooser extends StatefulWidget {
 
 class _ImageChooserState extends State<ImageChooser> {
   int selectedImageIndex =
-      -1; // Index of the selected image, -1 means none selected
+  -1; // Index of the selected image, -1 means none selected
 
   List<String> sampleImages = [
     'assets/web/chart1_img.png',
@@ -24,10 +25,11 @@ class _ImageChooserState extends State<ImageChooser> {
   ];
 
   Future<void> _openImagePicker() async {
-    final pickedFile = await ImagePickerWeb.getImageAsBytes();
+    final XFile? pickedFile = await ImagePicker().pickImage(source: ImageSource.camera);
 
     if (pickedFile != null) {
-      String base64Image = base64Encode(pickedFile);
+      Uint8List? bytes = await pickedFile.readAsBytes();
+      String base64Image = base64Encode(bytes);
 
       setState(() {
         // Reset selected image from the sample images
@@ -47,7 +49,7 @@ class _ImageChooserState extends State<ImageChooser> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: List.generate(
             sampleImages.length,
-            (index) => GestureDetector(
+                (index) => GestureDetector(
               onTap: () {
                 setState(() {
                   selectedImageIndex = index;
@@ -86,7 +88,9 @@ class _ImageChooserState extends State<ImageChooser> {
           child: ElevatedButton(
             onPressed: () {
               // Add functionality to choose image from local file
-              _openImagePicker();
+              if (kIsWeb) {
+                _openImagePicker();
+              }
             },
             child: const Text("Choose from local file"),
           ),

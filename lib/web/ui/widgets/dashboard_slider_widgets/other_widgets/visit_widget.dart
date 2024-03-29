@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:manage_my_store/mobile/ui/widgets/customtext.dart';
+import 'package:manage_my_store/mobile/ui/widgets/custom_text.dart';
 
 class DailyVisits extends StatefulWidget {
   final double height;
