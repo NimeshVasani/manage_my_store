@@ -2,13 +2,14 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:manage_my_store/web/ui/screens/adminlogin.dart';
-import 'package:manage_my_store/web/ui/sliderscreens/additems.dart';
+import 'package:manage_my_store/web/ui/screens/admin_login.dart';
+import 'package:manage_my_store/web/ui/sliderscreens/add_items.dart';
 import 'package:manage_my_store/web/ui/sliderscreens/dashboard.dart';
-import 'package:manage_my_store/web/ui/widgets/adminmainscreenwidgets/customAppbar.dart';
-import 'package:manage_my_store/web/ui/widgets/adminmainscreenwidgets/drawermenu.dart';
+import 'package:manage_my_store/web/ui/sliderscreens/profile_setting.dart';
+import 'package:manage_my_store/web/ui/widgets/adminmainscreenwidgets/custom_app_bar.dart';
+import 'package:manage_my_store/web/ui/widgets/adminmainscreenwidgets/drawer_menu.dart';
 import 'package:provider/provider.dart';
-import '../../../viewmodels/authentication/webauthviewmodel.dart';
+import '../../../viewmodels/authentication/web_auth_view_model.dart';
 
 class AdminMainScreen extends StatefulWidget {
   const AdminMainScreen({super.key});
@@ -36,7 +37,8 @@ class _AdminMainScreenState extends State<AdminMainScreen> {
   Widget build(BuildContext context) {
     final List sliderScreens = [
       const DashBoard(),
-      const AddItems()
+      const AddItems(),
+      const ProfileSetting()
     ];
 
     return Scaffold(

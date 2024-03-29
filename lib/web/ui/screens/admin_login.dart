@@ -1,18 +1,18 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:manage_my_store/viewmodels/authentication/webauthviewmodel.dart';
-import 'package:manage_my_store/viewmodels/firestore/webfirestoreviewmodel.dart';
-import 'package:manage_my_store/web/ui/screens/adminmainscreen.dart';
-import 'package:manage_my_store/web/ui/screens/adminregistration.dart';
-import 'package:manage_my_store/web/ui/widgets/adminloginwidgets/loginappbar.dart';
-import 'package:manage_my_store/web/ui/widgets/adminloginwidgets/loginheading.dart';
+import 'package:manage_my_store/viewmodels/authentication/web_auth_view_model.dart';
+import 'package:manage_my_store/viewmodels/firestore/web_fire_store_view_model.dart';
+import 'package:manage_my_store/web/ui/screens/admin_main_screen.dart';
+import 'package:manage_my_store/web/ui/screens/admin_registration.dart';
 import 'package:provider/provider.dart';
 
-import '../../../mobile/ui/widgets/customtext.dart';
-import '../../../mobile/ui/widgets/loginscreenwidgets/emailTextField.dart';
-import '../../../mobile/ui/widgets/loginscreenwidgets/passwordTextField.dart';
+import '../../../mobile/ui/widgets/custom_text.dart';
+import '../../../mobile/ui/widgets/loginscreenwidgets/email_text_field.dart';
+import '../../../mobile/ui/widgets/loginscreenwidgets/password_text_field.dart';
 import '../../../utils/Resource.dart';
+import '../widgets/admin_login_widgets/login_app_bar.dart';
+import '../widgets/admin_login_widgets/login_heading.dart';
 
 class AdminLoginScreen extends StatefulWidget {
   const AdminLoginScreen({super.key});
