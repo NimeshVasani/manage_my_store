@@ -1,4 +1,4 @@
-# manage_my_store (Local Grocery Shopping App)
+# manage_my_store (Local Grocery Shopping App) 🛒🏪
 
 Manage My Store is a comprehensive Grocery Store app built with Flutter, targeting multiple platforms - Android, iOS, Web, macOS, and Windows. The project is open source and welcomes contributions from the Flutter community.
 
