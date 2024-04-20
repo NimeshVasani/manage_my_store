@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:manage_my_store/model/web/item.dart';
 
 import '../custom_text.dart';
 
 class CustomDealsLayout extends StatefulWidget {
-  const CustomDealsLayout({super.key});
+  final List<FirebaseItem> items;
+  const CustomDealsLayout({super.key, required this.items, });
 
   @override
   State<CustomDealsLayout> createState() => _CustomDealsLayoutState();
@@ -100,7 +102,7 @@ class _CustomDealsLayoutState extends State<CustomDealsLayout> {
           ],
         );
       },
-      itemCount: imageList.length,
+      itemCount: offerNames.length,
       shrinkWrap: true,
     );
   }

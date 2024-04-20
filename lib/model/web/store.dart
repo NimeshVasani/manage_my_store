@@ -3,10 +3,10 @@ import 'package:manage_my_store/model/web/store_owner.dart';
 import 'item.dart';
 
 class FirebaseStore {
-  final FirebaseStoreOwner storeOwner;
-  final String storeName;
-  final String storeAddress;
-  final List<FirebaseItem> items;
+  final FirebaseStoreOwner? storeOwner;
+  final String? storeName;
+  final String? storeAddress;
+  final List<FirebaseItem>? items;
 
   FirebaseStore(this.storeOwner, this.storeName, this.storeAddress, this.items);
 
@@ -19,9 +19,9 @@ class FirebaseStore {
             .toList();
 
   Map<String, dynamic> toJson() => {
-    'storeOwner': storeOwner.toJson(),
+    'storeOwner': storeOwner?.toJson(),
     'storeName': storeName,
     'storeAddress': storeAddress,
-    'items': items.map((item) => item.toJson()).toList(),
+    'items': items?.map((item) => item.toJson()).toList(),
   };
 }

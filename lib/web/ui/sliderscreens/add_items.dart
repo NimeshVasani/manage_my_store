@@ -220,8 +220,8 @@ class _AddItemsState extends State<AddItems> {
               brandName,
               unit,
               double.parse(quantity),
-              double.parse(price),
-              double.parse(discount),
+              double.parse(price).toDouble(),
+              double.parse(discount).toDouble(),
               savingStatus.data.toString(),
               ''));
           break;

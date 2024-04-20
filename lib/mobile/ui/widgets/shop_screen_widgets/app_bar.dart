@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:manage_my_store/model/web/store.dart';
 
 import 'categories.dart';
 
 class CustomAppBar extends StatefulWidget {
   final ValueChanged<int> onChanged;
 
-  const CustomAppBar({super.key, required this.onChanged});
+  final List<String>  stores;
+
+  const CustomAppBar({super.key, required this.onChanged, required this.stores});
 
   @override
   State<CustomAppBar> createState() => _CustomAppBarState();
@@ -68,26 +71,31 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   end: Alignment.bottomCenter,
                 ),
               ),
-              child: const Row(
+              child:  Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(left: 15.0,),
-                    child: Text(
-                      'We have something for you',
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
+                    padding: const EdgeInsets.only(left: 15.0,),
+                    child: SizedBox(
+                      width: 250,
+                      child: Text(
+                        widget.stores.isNotEmpty?
+                        widget.stores[0]:"Empty Store list",
+                        style: const TextStyle(
+                          fontSize: 20,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                          overflow: TextOverflow.ellipsis
+                        ),
                       ),
                     ),
                   ),
-                  Spacer(),
-                  Padding(
+                  const Spacer(),
+                  const Padding(
                     padding: EdgeInsets.only(right: 10.0),
                     child: Text(
-                      'Show all',
+                      'Change Store',
                       style: TextStyle(
                           fontSize: 18,
                           color: Colors.blueAccent,

@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:manage_my_store/mobile/ui/widgets/loginscreenwidgets/email_text_field.dart';
-import 'package:manage_my_store/mobile/ui/widgets/loginscreenwidgets/password_text_field.dart';
+import 'package:manage_my_store/mobile/ui/widgets/login_screen_widgets/email_text_field.dart';
+import 'package:manage_my_store/mobile/ui/widgets/login_screen_widgets/password_text_field.dart';
 import 'package:manage_my_store/model/web/store.dart';
 import 'package:manage_my_store/model/web/store_owner.dart';
 import 'package:manage_my_store/viewmodels/firestore/web_fire_store_view_model.dart';

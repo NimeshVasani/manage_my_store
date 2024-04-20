@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/profilescreenwidgets/custom_app_bar.dart';
-import '../widgets/profilescreenwidgets/setting_list.dart';
+import '../widgets/profile_screen_widgets/custom_app_bar.dart';
+import '../widgets/profile_screen_widgets/setting_list.dart';
 
 
 class ProfileScreen extends StatefulWidget {

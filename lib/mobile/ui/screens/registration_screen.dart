@@ -6,10 +6,10 @@ import 'package:manage_my_store/utils/Resource.dart';
 import 'package:manage_my_store/viewmodels/firestore/mobile_firestore_view_model.dart';
 import 'package:provider/provider.dart';
 import '../../../viewmodels/authentication/mobile_auth_view_model.dart';
-import '../widgets/loginscreenwidgets/app_bar.dart';
-import '../widgets/loginscreenwidgets/email_text_field.dart';
-import '../widgets/loginscreenwidgets/name_text_field.dart';
-import '../widgets/loginscreenwidgets/password_text_field.dart';
+import '../widgets/login_screen_widgets/app_bar.dart';
+import '../widgets/login_screen_widgets/email_text_field.dart';
+import '../widgets/login_screen_widgets/name_text_field.dart';
+import '../widgets/login_screen_widgets/password_text_field.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({super.key});

@@ -14,6 +14,6 @@ class FirebaseUser {
   Map<String, dynamic> toJson() => {
     'name': name,
     'email': email,
-    'password':phoneNum
+    'phoneNum':phoneNum
   };
 }

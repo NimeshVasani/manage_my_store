@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/search_screen_widgets/app_bar.dart';
-
-
-class SearchScreen extends StatefulWidget {
-  const SearchScreen({super.key});
+class FavoriteItemsScreen extends StatefulWidget {
+  const FavoriteItemsScreen({super.key});
 
   @override
-  State<SearchScreen> createState() => _SearchScreenState();
+  State<FavoriteItemsScreen> createState() => _FavoriteItemsScreenState();
 }
 
-class _SearchScreenState extends State<SearchScreen> {
+class _FavoriteItemsScreenState extends State<FavoriteItemsScreen> {
   late ScrollController _scrollController;
-  int selectedIndex = 0;
 
   @override
   void initState() {
@@ -23,14 +19,13 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color(0xFF003366),
-        body: SafeArea(
-            child: CustomScrollView(
-                shrinkWrap: true,
-                controller: _scrollController,
-                physics: const ClampingScrollPhysics(),
-                slivers: [
-              appBar(),
+      backgroundColor: const Color(0xFF003366),
+      body: SafeArea(
+        child: CustomScrollView(
+            shrinkWrap: true,
+            controller: _scrollController,
+            physics: const ClampingScrollPhysics(),
+            slivers: [
               SliverList(
                   delegate: SliverChildBuilderDelegate(
                       // The builder function returns a ListTile with a title that
@@ -39,8 +34,10 @@ class _SearchScreenState extends State<SearchScreen> {
                           decoration: const BoxDecoration(
                             color: Colors.white,
                           ),
-                          child:  Container()),
-                      childCount: 1))
-            ])));
+                          child: Container()),
+                      childCount: 10))
+            ]),
+      ),
+    );
   }
 }

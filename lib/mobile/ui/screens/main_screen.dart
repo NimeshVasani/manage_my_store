@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:manage_my_store/mobile/ui/screens/favorite_items_screen.dart';
 import 'package:manage_my_store/mobile/ui/screens/profile_screen.dart';
 import 'package:manage_my_store/mobile/ui/screens/search_screen.dart';
-import 'package:manage_my_store/model/user.dart';
 import 'package:manage_my_store/viewmodels/firestore/mobile_firestore_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -33,7 +33,7 @@ class _MainScreenState extends State<MainScreen> {
   static const List<Widget> _bottomNavScreens = [
     ShopScreen(),
     SearchScreen(),
-    ShopScreen(),
+    FavoriteItemsScreen(),
     ProfileScreen(),
   ];
 
@@ -49,9 +49,7 @@ class _MainScreenState extends State<MainScreen> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(35)),
                 backgroundColor: Colors.orange,
-                onPressed: () async{
-                 await fireStoreViewModel.addUserIntoUserList(FirebaseUser("Nimesh", "vasaninimesh0@gmail.com", 'Daizy@1905'));
-                },
+                onPressed: () async {},
                 child: const Icon(
                   Icons.shopping_cart_outlined,
                   color: Colors.white,
@@ -59,7 +57,7 @@ class _MainScreenState extends State<MainScreen> {
               ),
             ),
             floatingActionButtonLocation:
-            FloatingActionButtonLocation.centerDocked,
+                FloatingActionButtonLocation.centerDocked,
             body: Center(child: _bottomNavScreens.elementAt(selectedIndex)),
             bottomNavigationBar: SafeArea(
                 maintainBottomViewPadding: false,
@@ -115,10 +113,7 @@ void showPopUpDialog(BuildContext context) {
                   children: <Widget>[
                     Container(
                       height: 60,
-                      width: MediaQuery
-                          .of(context)
-                          .size
-                          .width,
+                      width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
                           color: Colors.yellow.withOpacity(0.2),
                           border: Border(
@@ -223,27 +218,24 @@ void showPopUpDialog(BuildContext context) {
                       padding: const EdgeInsets.all(20.0),
                       child: ElevatedButton(
                         child: Container(
-                          width: MediaQuery
-                              .of(context)
-                              .size
-                              .width,
+                          width: MediaQuery.of(context).size.width,
                           height: 60,
                           decoration: const BoxDecoration(
                               gradient: LinearGradient(
                                   begin: Alignment.topCenter,
                                   end: Alignment.bottomCenter,
                                   colors: [
-                                    Color(0xffc9880b),
-                                    Color(0xfff77f00),
-                                  ])),
+                                Color(0xffc9880b),
+                                Color(0xfff77f00),
+                              ])),
                           child: const Center(
                               child: Text(
-                                "Submit",
-                                style: TextStyle(
-                                    color: Colors.white70,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w800),
-                              )),
+                            "Submit",
+                            style: TextStyle(
+                                color: Colors.white70,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w800),
+                          )),
                         ),
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
@@ -260,3 +252,5 @@ void showPopUpDialog(BuildContext context) {
         );
       });
 }
+
+

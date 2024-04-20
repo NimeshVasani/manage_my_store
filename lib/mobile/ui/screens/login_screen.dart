@@ -8,8 +8,8 @@ import 'package:provider/provider.dart';
 
 import '../../../utils/Resource.dart';
 import '../../../viewmodels/authentication/mobile_auth_view_model.dart';
-import '../widgets/loginscreenwidgets/email_text_field.dart';
-import '../widgets/loginscreenwidgets/password_text_field.dart';
+import '../widgets/login_screen_widgets/email_text_field.dart';
+import '../widgets/login_screen_widgets/password_text_field.dart';
 import 'main_screen.dart';
 
 class LoginScreen extends StatefulWidget {

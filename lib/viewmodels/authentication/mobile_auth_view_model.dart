@@ -8,8 +8,7 @@ import '../../utils/Resource.dart';
 class MobileAuthViewModel with ChangeNotifier {
   final MobileAuthRepository _authRepository = MobileAuthRepository();
 
-  bool _isAuthenticated = false;
-  bool get isAuthenticated => _isAuthenticated;
+
 
   Future<Resources<User?>> registerWithEmailAndPassword(
       String name, String email, String password) async {
@@ -27,8 +26,8 @@ class MobileAuthViewModel with ChangeNotifier {
     await _authRepository.signOut();
   }
   Future<bool> checkAuthenticationStatus() async {
-    _isAuthenticated = await _authRepository.isAuthenticated();
-    return _isAuthenticated;
+    return await _authRepository.isAuthenticated();
+
   }
 
 }

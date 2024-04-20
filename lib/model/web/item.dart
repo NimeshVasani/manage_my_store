@@ -3,9 +3,9 @@ class FirebaseItem {
   final String productName;
   final String brandName;
   final String unit;
-  final double quantity;
-  final double price;
-  final double discount;
+  final dynamic quantity;
+  final dynamic price;
+  final dynamic discount;
   final String image;
   final String description;
 
@@ -17,9 +17,9 @@ class FirebaseItem {
         productName = json['productName'] as String,
         brandName = json['brandName'] as String,
         unit = json['unit'] as String,
-        quantity = json['quantity'] as double,
-        price = json['price'] as double,
-        discount = json['discount'] as double,
+        quantity = json['quantity'] as dynamic,
+        price = json['price'] as dynamic,
+        discount = json['discount'] as dynamic,
         image = json['image'] as String,
         description = json['description'] as String;
 

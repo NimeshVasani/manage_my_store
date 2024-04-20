@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:manage_my_store/mobile/ui/widgets/searchscreenwidgets/custom_search_bar.dart';
 
 import '../../../../mobile/ui/widgets/custom_text.dart';
+import '../../../../mobile/ui/widgets/search_screen_widgets/custom_search_bar.dart';
 
 Widget customAppbar() {
   return Card(

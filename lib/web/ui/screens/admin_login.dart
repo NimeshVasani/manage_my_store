@@ -8,8 +8,8 @@ import 'package:manage_my_store/web/ui/screens/admin_registration.dart';
 import 'package:provider/provider.dart';
 
 import '../../../mobile/ui/widgets/custom_text.dart';
-import '../../../mobile/ui/widgets/loginscreenwidgets/email_text_field.dart';
-import '../../../mobile/ui/widgets/loginscreenwidgets/password_text_field.dart';
+import '../../../mobile/ui/widgets/login_screen_widgets/email_text_field.dart';
+import '../../../mobile/ui/widgets/login_screen_widgets/password_text_field.dart';
 import '../../../utils/Resource.dart';
 import '../widgets/admin_login_widgets/login_app_bar.dart';
 import '../widgets/admin_login_widgets/login_heading.dart';
