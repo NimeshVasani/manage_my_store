@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:manage_my_store/mobile/ui/widgets/favorite_items_screen_widgets/favorite_screen_app_bar.dart';
 
 class FavoriteItemsScreen extends StatefulWidget {
   const FavoriteItemsScreen({super.key});
@@ -26,6 +27,7 @@ class _FavoriteItemsScreenState extends State<FavoriteItemsScreen> {
             controller: _scrollController,
             physics: const ClampingScrollPhysics(),
             slivers: [
+              favoriteScreenAppBar(),
               SliverList(
                   delegate: SliverChildBuilderDelegate(
                       // The builder function returns a ListTile with a title that
@@ -34,8 +36,8 @@ class _FavoriteItemsScreenState extends State<FavoriteItemsScreen> {
                           decoration: const BoxDecoration(
                             color: Colors.white,
                           ),
-                          child: Container()),
-                      childCount: 10))
+                          child: Container(height: MediaQuery.of(context).size.height-200,)),
+                      childCount: 1))
             ]),
       ),
     );

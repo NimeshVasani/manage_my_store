@@ -39,7 +39,8 @@ class _SearchScreenState extends State<SearchScreen> {
                           decoration: const BoxDecoration(
                             color: Colors.white,
                           ),
-                          child:  Container()),
+                          child:  Container(      height: MediaQuery.of(context).size.height-200,
+                          )),
                       childCount: 1))
             ])));
   }

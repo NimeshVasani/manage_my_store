@@ -79,12 +79,12 @@ class _ShopScreenState extends State<ShopScreen> {
                                           ? CustomDealsLayout(
                                               items: currentStore!.items!,
                                             )
-                                          : Container()
+                                          : Container(height: MediaQuery.of(context).size.height-400,)
                                       : currentItems.isNotEmpty
                                           ? CustomGridLayout(
                                               items: currentItems,
                                             )
-                                          : Container(),
+                                          : Container(height: MediaQuery.of(context).size.height-400,),
                                   const SizedBox(
                                     height: 30,
                                   )
