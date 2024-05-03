@@ -68,7 +68,7 @@ class _ShopScreenState extends State<ShopScreen> {
                               color: Colors.white,
                             ),
                             child: Column(
-                                mainAxisSize: MainAxisSize.min,
+                                mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   const SizedBox(
@@ -86,7 +86,7 @@ class _ShopScreenState extends State<ShopScreen> {
                                             )
                                           : Container(height: MediaQuery.of(context).size.height-400,),
                                   const SizedBox(
-                                    height: 30,
+                                    height: 100,
                                   )
                                 ]),
                           ),

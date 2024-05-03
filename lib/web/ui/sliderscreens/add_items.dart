@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swipe_button/flutter_swipe_button.dart';
 import 'package:manage_my_store/model/web/item.dart';
+import 'package:manage_my_store/utils/generate_item_id.dart';
 import 'package:manage_my_store/viewmodels/storage/web_storage_view_model.dart';
 import 'package:manage_my_store/web/ui/widgets/add_items_widgets/custom_card.dart';
 import 'package:manage_my_store/web/ui/widgets/add_items_widgets/product_categories.dart';
@@ -22,6 +23,8 @@ class AddItems extends StatefulWidget {
 class _AddItemsState extends State<AddItems> {
   late WebFireStoreViewModel fireStoreViewModel;
   late WebStorageViewModel storageViewModel;
+
+  late String itemId;
   late String productType;
   late FirebaseItem firebaseItem;
   late String productName;
@@ -32,6 +35,7 @@ class _AddItemsState extends State<AddItems> {
   late String discount;
   late String imagePath;
   late String desc;
+  var fieldClear = false;
 
   @override
   void initState() {
@@ -40,6 +44,7 @@ class _AddItemsState extends State<AddItems> {
         Provider.of<WebFireStoreViewModel>(context, listen: false);
     storageViewModel = Provider.of<WebStorageViewModel>(context, listen: false);
     productType = productTypeName[0];
+    itemId = generateItemId();
   }
 
   var productTypeImg = [
@@ -85,25 +90,25 @@ class _AddItemsState extends State<AddItems> {
         CustomCard(
           selectedType: "",
           customChild: ProductDetails(
-            productName: (productName) {
-              this.productName = productName;
-            },
-            brandName: (brandName) {
-              this.brandName = brandName;
-            },
-            unit: (unit) {
-              this.unit = unit;
-            },
-            quantity: (quantity) {
-              this.quantity = quantity;
-            },
-            price: (String price) {
-              this.price = price;
-            },
-            discount: (String discount) {
-              this.discount = discount;
-            },
-          ),
+              productName: (productName) {
+                this.productName = productName;
+              },
+              brandName: (brandName) {
+                this.brandName = brandName;
+              },
+              unit: (unit) {
+                this.unit = unit;
+              },
+              quantity: (quantity) {
+                this.quantity = quantity;
+              },
+              price: (String price) {
+                this.price = price;
+              },
+              discount: (String discount) {
+                this.discount = discount;
+              },
+              fieldClear: fieldClear),
           isBtn: false,
           name: "Product Details",
         ),
@@ -122,9 +127,14 @@ class _AddItemsState extends State<AddItems> {
         const SizedBox(
           height: 20,
         ),
-        const CustomCard(
+        CustomCard(
           selectedType: "",
-          customChild: ProductDescription(),
+          customChild: ProductDescription(
+            description: (String description) {
+              desc = description;
+            },
+            fieldClear: fieldClear,
+          ),
           isBtn: false,
           name: "Optional Info",
         ),
@@ -142,13 +152,6 @@ class _AddItemsState extends State<AddItems> {
             activeTrackColor: Colors.green.shade200,
             onSwipe: () async {
               saveImage(imagePath);
-              // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              //   backgroundColor: Colors.red,
-              //   content: Text(
-              //     image,
-              //     style: const TextStyle(color: Colors.white54),
-              //   ),
-              // ));
             },
             child: const Text(
               "Add to store",
@@ -193,6 +196,7 @@ class _AddItemsState extends State<AddItems> {
               style: const TextStyle(color: Colors.white54),
             ),
           ));
+          clearFields();
           break;
         }
       default:
@@ -215,6 +219,7 @@ class _AddItemsState extends State<AddItems> {
         {
           if (!mounted) return;
           addItemsIntoFireStore(FirebaseItem(
+              itemId,
               productType,
               productName,
               brandName,
@@ -223,7 +228,7 @@ class _AddItemsState extends State<AddItems> {
               double.parse(price).toDouble(),
               double.parse(discount).toDouble(),
               savingStatus.data.toString(),
-              ''));
+              desc));
           break;
         }
       default:
@@ -239,5 +244,9 @@ class _AddItemsState extends State<AddItems> {
     }
   }
 
-  void clearFields() {}
+  void clearFields() {
+    setState(() {
+      fieldClear = true;
+    });
+  }
 }
