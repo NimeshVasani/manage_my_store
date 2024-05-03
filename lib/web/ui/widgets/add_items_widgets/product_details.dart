@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:manage_my_store/model/web/item.dart';
 import 'package:manage_my_store/web/ui/widgets/add_items_widgets/custom_drop_down.dart';
 import 'package:manage_my_store/web/ui/widgets/utils/input_text_filed.dart';
 
@@ -13,6 +12,8 @@ class ProductDetails extends StatefulWidget {
   final ValueChanged<String> price;
   final ValueChanged<String> discount;
 
+  final bool fieldClear;
+
   const ProductDetails(
       {super.key,
       required this.productName,
@@ -20,7 +21,7 @@ class ProductDetails extends StatefulWidget {
       required this.unit,
       required this.quantity,
       required this.price,
-      required this.discount});
+      required this.discount, required this.fieldClear});
 
   @override
   State<ProductDetails> createState() => _ProductDetailsState();
@@ -34,8 +35,19 @@ class _ProductDetailsState extends State<ProductDetails> {
   TextEditingController discountEditingController = TextEditingController();
   String selectedUnit = 'not applicable';
 
+
   @override
   Widget build(BuildContext context) {
+    if(widget.fieldClear) {
+      setState(() {
+        productNameController.clear();
+        brandNameController.clear();
+        quantityEditingController.clear();
+        priceEditingController.clear();
+        discountEditingController.clear();
+
+      });
+    }
     return Padding(
       padding: const EdgeInsets.only(left: 10.0, right: 10.0),
       child: Column(

@@ -102,7 +102,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           Resources<bool> fireStoreValue =
                               await fireStoreViewModel.addUserIntoUserList(
                                   FirebaseUser(nameController.text,
-                                      firebaseUser.data!.email!, null));
+                                      firebaseUser.data!.email!, null,null));
                           switch (fireStoreValue.runtimeType) {
                             case const (Success<bool>):
                               {

@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:manage_my_store/utils/Resource.dart';
+import 'package:uuid/uuid.dart';
 
 class WebStorageRepository {
   final FirebaseStorage _storage = FirebaseStorage.instance;
@@ -12,10 +13,10 @@ class WebStorageRepository {
     try {
       // Generate a unique filename for the image
       String uniqueFileName = firebaseAuth.currentUser!.uid.toString();
-      String imageName = uniqueFileName;
+      String imageName = const Uuid().v1();
 
       // Reference to the image path in Firebase Storage
-      Reference storageRef = _storage.ref().child('images/$imageName');
+      Reference storageRef = _storage.ref().child('images/$uniqueFileName/$imageName');
       Uint8List bytes = base64Decode(imagePath);
       // Upload the image to Firebase Storage
       await storageRef.putData(bytes);

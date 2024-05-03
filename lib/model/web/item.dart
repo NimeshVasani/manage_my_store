@@ -1,4 +1,5 @@
 class FirebaseItem {
+  final String itemId;
   final String category;
   final String productName;
   final String brandName;
@@ -9,11 +10,21 @@ class FirebaseItem {
   final String image;
   final String description;
 
-  FirebaseItem(this.category, this.productName, this.brandName, this.unit,
-      this.quantity, this.price, this.discount, this.image, this.description);
+  FirebaseItem(
+      this.itemId,
+      this.category,
+      this.productName,
+      this.brandName,
+      this.unit,
+      this.quantity,
+      this.price,
+      this.discount,
+      this.image,
+      this.description);
 
   FirebaseItem.fromJson(Map<String?, dynamic> json)
-      : category = json['category'] as String,
+      : itemId = json['itemId'] as String,
+        category = json['category'] as String,
         productName = json['productName'] as String,
         brandName = json['brandName'] as String,
         unit = json['unit'] as String,
@@ -24,6 +35,7 @@ class FirebaseItem {
         description = json['description'] as String;
 
   Map<String, dynamic> toJson() => {
+        'itemId': itemId,
         'category': category,
         'productName': productName,
         'brandName': brandName,
